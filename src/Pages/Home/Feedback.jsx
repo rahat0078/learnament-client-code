@@ -80,16 +80,16 @@ const Feedback = () => {
                 >
                     {
                         feedbacks.map(feedback => <SwiperSlide key={feedback._id}>
-                            <div className="flex flex-col justify-center items-center p-10">
+                            <div className="flex flex-col justify-center items-center">
                                 <div>
                                     <Rating readOnly className="max-w-48" value={feedback.rating} />
                                 </div>
-                                <div className="grid grid-cols-6 justify-between gap-6 mt-8 p-10">
-                                    <div className="col-span-1">
-                                        <img className="h-48 w-48 object-cover rounded-md" src={feedback.image} alt="" />
+                                <div className="flex flex-col lg:flex-row justify-between gap-6 mt-8 px-16">
+                                    <div className="w-64">
+                                        <img className="h-56 w-full object-cover rounded-md" src={feedback.image} alt="" />
                                         <h5 className="text-2xl mt-4 font-bold">{feedback.name}</h5>
                                     </div>
-                                    <div className="col-span-5">
+                                    <div>
                                         <h3 className="text-xl font-semibold">{feedback.title}</h3>
                                         <p>{feedback.description}</p>
                                     </div>
