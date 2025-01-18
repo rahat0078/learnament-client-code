@@ -1,11 +1,9 @@
-import { Helmet } from "react-helmet-async";
+import HelmetTitle from './../../components/HelmetTitle';
 
 const AllClasses = () => {
     return (
-        <div>
-            <Helmet>
-                <title>All Classes - LearnaMent</title>
-            </Helmet>
+        <div className='container mx-auto'>
+            <HelmetTitle title="All Classes"></HelmetTitle>
             AllClasses
         </div>
     );

@@ -1,12 +1,16 @@
-import { Helmet } from "react-helmet-async";
+import HelmetTitle from "../../components/HelmetTitle";
+import Slider from "./Slider";
 
 const Home = () => {
     return (
-        <div className="min-h-screen">
-            <Helmet>
-                <title>Home - LearnaMent</title>
-            </Helmet>
-        </div>
+        <>
+            <HelmetTitle title={"Home"}></HelmetTitle>
+            <div>
+                <header>
+                    <Slider/>
+                </header>
+            </div>
+        </>
     );
 };
 
