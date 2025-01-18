@@ -4,6 +4,7 @@ import PopularSection from "./PopularSection";
 import Slider from "./Slider";
 import Feedback from './Feedback';
 import HomeStats from "./HomeStats";
+import JoinAsTeacher from "./JoinAsTeacher";
 
 const Home = () => {
     return (
@@ -21,6 +22,7 @@ const Home = () => {
                 <section className="bg-base-200">
                     <HomeStats />
                 </section>
+                <JoinAsTeacher />
             </div>
         </>
     );
