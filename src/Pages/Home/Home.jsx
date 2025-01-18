@@ -1,4 +1,5 @@
 import HelmetTitle from "../../components/HelmetTitle";
+import PartnersSection from "./PartnersSection";
 import Slider from "./Slider";
 
 const Home = () => {
@@ -9,6 +10,9 @@ const Home = () => {
                 <header>
                     <Slider/>
                 </header>
+                <main className="container mx-auto bg-base-100">
+                    <PartnersSection/>
+                </main>
             </div>
         </>
     );
