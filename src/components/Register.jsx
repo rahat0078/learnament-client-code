@@ -58,7 +58,7 @@ const Register = () => {
 
     return (
         <>
-            <HelmetTitle title={"Login"}></HelmetTitle>
+            <HelmetTitle title={"Register"}></HelmetTitle>
             <div className="hero bg-base-100 py-16">
                 <div className="hero-content flex-col md:flex-row gap-12">
                     <div className="card bg-base-100 w-full max-w-md shrink-0 shadow-2xl">

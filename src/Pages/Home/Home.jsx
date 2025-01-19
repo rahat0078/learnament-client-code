@@ -6,6 +6,7 @@ import Feedback from './Feedback';
 import HomeStats from "./HomeStats";
 import JoinAsTeacher from "./JoinAsTeacher";
 import Faq from "./Faq";
+import NextLevel from "./NextLevel";
 
 const Home = () => {
     return (
@@ -27,6 +28,7 @@ const Home = () => {
                 <section className="bg-base-200 px-4">
                     <Faq/>
                 </section>
+                <NextLevel/>
             </div>
         </>
     );
