@@ -1,41 +1,46 @@
 import { Link } from "react-router-dom";
 import HelmetTitle from "./HelmetTitle";
 import { useForm } from "react-hook-form"
-import { FcGoogle } from "react-icons/fc";
 import Swal from "sweetalert2";
 import Lottie from "lottie-react";
 import loginLottie from "../assets/Lottie/loginLottie.json";
+import SocialLogin from "./SocialLogin";
+import useAuth from "../hooks/useAuth";
 
 
 const Login = () => {
 
-
     const { register, formState: { errors }, reset, handleSubmit } = useForm()
-
-
+    const { loginUser, setLoading } = useAuth()
 
     const onSubmit = (data) => {
 
-        
-        console.log(data)
-        reset()
-        Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Login Successfully",
-            showConfirmButton: false,
-            timer: 1500
-        });
-    }
+        const email = data.email;
+        const password = data.password
 
-    const handleGoogleLogin = () => {
-        Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Login Successfully",
-            showConfirmButton: false,
-            timer: 1500
-        });
+        loginUser(email, password)
+            .then(res => {
+                console.log(res.user);
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Login Successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                reset()
+            })
+            .catch(err => {
+                console.log(err.message);
+                Swal.fire({
+                    position: "top-start",
+                    icon: "error",
+                    title: "Invalid email or password",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                setLoading(false)
+            })
     }
 
 
@@ -70,7 +75,7 @@ const Login = () => {
                                 <input type="submit" value={"Login"} className="btn md:text-lg text-white bg-[#05A698] hover:bg-[#058ea6]" />
                             </div>
                             <div className="divider">OR</div>
-                            <p className="flex justify-end items-center gap-2 text-xl">Login With <span onClick={handleGoogleLogin} className="border p-1 rounded-full text-3xl cursor-pointer"><FcGoogle /></span></p>
+                            <SocialLogin />
                         </form>
                         <p className="text-end pb-6 pr-10">Don&apos;t have Account? <Link to="/register" className="text-blue-600 underline">Register Now</Link> </p>
                     </div>

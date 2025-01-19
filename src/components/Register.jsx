@@ -1,15 +1,17 @@
 import { Link } from "react-router-dom";
 import HelmetTitle from "./HelmetTitle";
 import { useForm } from "react-hook-form"
-import { FcGoogle } from "react-icons/fc";
 import Swal from "sweetalert2";
 import Lottie from "lottie-react";
 import registerLottie from "../assets/Lottie/registerLottie.json";
 import axios from "axios";
+import SocialLogin from "./SocialLogin";
+import useAuth from "../hooks/useAuth";
 
 
 const Register = () => {
     const { register, formState: { errors }, reset, handleSubmit } = useForm();
+    const { registerUser, updateUserProfile, setLoading } = useAuth()
 
 
     const imgbbApiKey = import.meta.env.VITE_IMGBB_API_KEY
@@ -17,47 +19,43 @@ const Register = () => {
 
 
     const onSubmit = async (data) => {
-
         // upload img to imgbb
         const imgFile = data?.photo[0]
         const formData = new FormData();
         formData.append("image", imgFile);
         const res = await axios.post(`https://api.imgbb.com/1/upload?key=${imgbbApiKey}`, formData)
-
         // FORM DATA
-        const imgUrl = res.data.data.display_url
-        const { name, email, password, } = data
-        console.log(name, email, password, imgUrl);
+        const photo = res?.data?.data?.display_url
+        const email = data?.email
+        const password = data?.password
+        const name = data?.name
 
-        //TODO: register with email and password 
+        // user registration 
+        registerUser(email, password)
+            .then(res => {
+                console.log(res.user.email);
+                updateUserProfile(name, photo)
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Registration Successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                reset()
+            })
+            .catch((error) => {
+                console.log(error.message);
+                setLoading(false)
+            })
+
 
         // TODO: after registration successfully data will be added in database 
 
-
-        Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Registration Successfully",
-            showConfirmButton: false,
-            timer: 1500
-        });
-        reset()
+        
     }
 
-    const handleGoogleLogin = () => {
 
-
-        //TODO: google login
-        //TODO: data will added in database, and never go duplicate data
-
-        Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Registration Successfully",
-            showConfirmButton: false,
-            timer: 1500
-        });
-    }
     return (
         <>
             <HelmetTitle title={"Login"}></HelmetTitle>
@@ -103,21 +101,33 @@ const Register = () => {
 
                             </div>
 
-
+                            {/* password  */}
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input {...register("password", { required: true })} type="password" placeholder="Password" className="input input-bordered" />
-                                {errors.password?.type === "required" && (
-                                    <p className="text-red-500 pt-4">Password is required</p>
+                                <input
+                                    {...register("password", {
+                                        required: "Password is required",
+                                        minLength: {
+                                            value: 6,
+                                            message: "Password must be at least 6 characters"
+                                        },
+                                        pattern: {
+                                            value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/,
+                                            message: "Password must include at least one uppercase letter, one lowercase letter, and one number"
+                                        }
+                                    })}
+                                    type="password" placeholder="Password" className="input input-bordered" />
+                                {errors.password && (
+                                    <p className="text-red-500 pt-4">{errors.password.message}</p>
                                 )}
                             </div>
                             <div className="form-control mt-6">
                                 <input type="submit" value={"Register"} className="btn md:text-lg text-white bg-[#05A698] hover:bg-[#058ea6]" />
                             </div>
                             <div className="divider">OR</div>
-                            <p className="flex justify-end items-center gap-2 text-xl">Login With <span onClick={handleGoogleLogin} className="border p-1 rounded-full text-3xl cursor-pointer"><FcGoogle /></span></p>
+                            <SocialLogin />
                         </form>
                         <p className="text-end pb-6 pr-10">Already have Account? <Link to="/login" className="text-blue-600 underline">Login</Link> </p>
                     </div>

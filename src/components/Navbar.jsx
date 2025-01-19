@@ -1,15 +1,15 @@
-import { useState } from "react";
 import { FaArrowRightFromBracket } from "react-icons/fa6";
 import { IoMdMenu } from "react-icons/io";
 import { Link, NavLink } from "react-router-dom";
 import logo from '../assets/learnament-logo.png';
+import useAuth from "../hooks/useAuth";
 
 const Navbar = () => {
 
-    const [user, setUser] = useState(true)
+    const { user, logoutUser } = useAuth()
 
     const handleLogout = () => {
-        setUser(false)
+        logoutUser()
     }
 
     const navlinks = <>
@@ -40,14 +40,14 @@ const Navbar = () => {
             </div>
             <div className="navbar-end">
                 {
-                    user ? <div className="dropdown dropdown-hover">
-                        <div tabIndex={0} role="button" className="avatar online">
-                            <div className="w-12 h-12 rounded-full">
-                                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                    user?.email ? <div className="dropdown dropdown-hover">
+                        <div tabIndex={0} role="button">
+                            <div className="w-14 h-14">
+                                <img className="w-full h-14 rounded-full object-fill" src={user?.photoURL} />
                             </div>
                         </div>
                         <ul tabIndex={0} className="dropdown-content menu bg-base-200 rounded-box z-[1] w-52 right-0 p-2 shadow-xl">
-                            <p className="text-center py-2 text-lg font-semibold">Username</p>
+                            <p className="text-center py-2 text-lg font-semibold">{user?.displayName}</p>
                             <li><Link to="/dashboard">Dashboard</Link></li>
                             <li><a onClick={handleLogout} className="text-[#05A698]"><FaArrowRightFromBracket />
                                 Logout</a></li>
