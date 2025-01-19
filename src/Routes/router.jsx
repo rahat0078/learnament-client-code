@@ -5,6 +5,7 @@ import AllClasses from './../Pages/AllClasses/AllClasses';
 import TeachOnLM from './../Pages/TeachOnLM/TeachOnLM';
 import Login from "../components/Login";
 import Dashboard from "../Layouts/Dashboard";
+import Register from "../components/Register";
 
 const router = createBrowserRouter([
     {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
             {
                 path: '/login',
                 element: <Login/>
+            },
+            {
+                path: '/register',
+                element: <Register/>
             }
         ]
     },
