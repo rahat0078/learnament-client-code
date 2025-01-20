@@ -1,25 +1,37 @@
 import { FcGoogle } from "react-icons/fc";
 import useAuth from './../hooks/useAuth';
 import Swal from "sweetalert2";
+import useAxiosPublic from './../hooks/useAxiosPublic';
+import { useNavigate } from "react-router-dom";
 
 const SocialLogin = () => {
 
     const { googleLogin, setLoading } = useAuth()
+    const axiosPublic = useAxiosPublic()
+    const navigate = useNavigate()
+
 
     const handleGoogleLogin = () => {
         googleLogin()
-            .then(res => {
-                console.log(res.user);
-                console.log(res.user.email);
-                if (res?.user) {
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: "Sign In with google Successfully",
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
+            .then(result => {
+                const userInfo = {
+                    email: result?.user?.email,
+                    name: result?.user?.displayName
                 }
+                axiosPublic.post('/users', userInfo)
+                    .then(res => {
+                        if (res.data.insertedId || res.data.message == "user already exist in db") {
+                            setLoading(false)
+                        }
+                    })
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Sign In with google Successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+                navigate('/')
             })
             .catch(err => {
                 Swal.fire({
@@ -33,6 +45,7 @@ const SocialLogin = () => {
                 setLoading(false)
             })
     }
+
 
     return (
         <>

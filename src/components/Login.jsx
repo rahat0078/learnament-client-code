@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import HelmetTitle from "./HelmetTitle";
 import { useForm } from "react-hook-form"
 import Swal from "sweetalert2";
@@ -12,6 +12,7 @@ const Login = () => {
 
     const { register, formState: { errors }, reset, handleSubmit } = useForm()
     const { loginUser, setLoading } = useAuth()
+    const navigate = useNavigate()
 
     const onSubmit = (data) => {
 
@@ -28,6 +29,7 @@ const Login = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
+                navigate('/')
                 reset()
             })
             .catch(err => {

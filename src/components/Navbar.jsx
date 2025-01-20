@@ -22,10 +22,12 @@ const Navbar = () => {
             className={({ isActive }) =>
                 isActive ? "text-orange-600 bg-none" : ""
             }>All Classes</NavLink></li>
-        <li><NavLink to="/TeachOnLearnament"
-            className={({ isActive }) =>
-                isActive ? "text-orange-600 bg-none" : ""
-            }>Teach on LearnaMent</NavLink></li>
+        {
+            user?.email ? <li><NavLink to="/TeachOnLearnament"
+                className={({ isActive }) =>
+                    isActive ? "text-orange-600 bg-none" : ""
+                }>Teach on LearnaMent</NavLink></li> : ""
+        }
     </>
 
     return (

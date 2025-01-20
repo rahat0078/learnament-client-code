@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import HelmetTitle from "./HelmetTitle";
 import { useForm } from "react-hook-form"
 import Swal from "sweetalert2";
@@ -7,11 +7,14 @@ import registerLottie from "../assets/Lottie/registerLottie.json";
 import axios from "axios";
 import SocialLogin from "./SocialLogin";
 import useAuth from "../hooks/useAuth";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 
 const Register = () => {
     const { register, formState: { errors }, reset, handleSubmit } = useForm();
     const { registerUser, updateUserProfile, setLoading } = useAuth()
+    const axiosPublic = useAxiosPublic()
+    const navigate = useNavigate()
 
 
     const imgbbApiKey = import.meta.env.VITE_IMGBB_API_KEY
@@ -35,14 +38,29 @@ const Register = () => {
             .then(res => {
                 console.log(res.user.email);
                 updateUserProfile(name, photo)
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Registration Successfully",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-                reset()
+                    .then(() => {
+                        const userInfo = {
+                            name: data.name,
+                            email: data.email,
+
+                        }
+                        axiosPublic.post('/users', userInfo)
+                            .then(res => {
+                                if (res.data.insertedId) {
+                                    {
+                                        Swal.fire({
+                                            position: "top-end",
+                                            icon: "success",
+                                            title: "Registration Successfully",
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                        });
+                                        reset()
+                                        navigate('/')
+                                    }
+                                }
+                            })
+                    })
             })
             .catch((error) => {
                 console.log(error.message);
@@ -50,9 +68,8 @@ const Register = () => {
             })
 
 
-        // TODO: after registration successfully data will be added in database 
 
-        
+
     }
 
 

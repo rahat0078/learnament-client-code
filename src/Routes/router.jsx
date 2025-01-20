@@ -6,37 +6,49 @@ import TeachOnLM from './../Pages/TeachOnLM/TeachOnLM';
 import Login from "../components/Login";
 import Dashboard from "../Layouts/Dashboard";
 import Register from "../components/Register";
+import PrivateRoute from "../private/PrivateRoute";
+import MyProfile from "../components/MyProfile";
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <MainLayout/>,
+        element: <MainLayout />,
         children: [
             {
                 path: '/',
-                element: <Home/>
+                element: <Home />
             },
             {
                 path: "/allClasses",
-                element: <AllClasses/>
+                element: <AllClasses />
             },
             {
                 path: "/TeachOnLearnament",
-                element: <TeachOnLM/>
+                element: <PrivateRoute>
+                    <TeachOnLM />
+                </PrivateRoute>
             },
             {
                 path: '/login',
-                element: <Login/>
+                element: <Login />
             },
             {
                 path: '/register',
-                element: <Register/>
+                element: <Register />
             }
         ]
     },
     {
-        path: 'dashboard',
-        element: <Dashboard/>
+        path: '/dashboard',
+        element: <PrivateRoute>
+            <Dashboard />
+        </PrivateRoute>,
+        children: [
+            {
+                path: "/dashboard/profile",
+                element: <MyProfile/>
+            }
+        ]
     }
 ]);
 
