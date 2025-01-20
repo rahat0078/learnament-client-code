@@ -4,7 +4,6 @@ import useAuth from "../hooks/useAuth";
 const MyProfile = () => {
 
     const { user,logoutUser  } = useAuth()
-    console.log(user);
 
     return (
         <div className="p-10 rounded-lg bg-[#8ff9f126] shadow-lg">

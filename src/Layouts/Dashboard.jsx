@@ -1,7 +1,7 @@
 import { Toaster } from "react-hot-toast";
 import useAuth from "../hooks/useAuth";
 import loadingGif from "../assets/loading.gif";
-import { FaList, FaPerson } from "react-icons/fa6";
+import { FaList } from "react-icons/fa6";
 import { NavLink, Outlet } from "react-router-dom";
 import { useState } from "react";
 import HelmetTitle from "../components/HelmetTitle";
@@ -10,15 +10,15 @@ import { CgProfile } from "react-icons/cg";
 
 const Dashboard = () => {
 
-    const { loading, user } = useAuth()
+    const { loading } = useAuth()
 
 
     // eslint-disable-next-line no-unused-vars
-    const [student, setStudent] = useState(false)
+    const [student, setStudent] = useState(true)
     // eslint-disable-next-line no-unused-vars
     const [teacher, setTeacher] = useState(false)
     // eslint-disable-next-line no-unused-vars
-    const [admin, setAdmin] = useState(true)
+    const [admin, setAdmin] = useState(false)
 
 
 
@@ -27,11 +27,10 @@ const Dashboard = () => {
 
     // Students Navlinks
     const studentsNav = <>
-        <li><NavLink>My enroll class</NavLink></li>
-        <li><NavLink>My Profile</NavLink></li>
+        <li><NavLink to="/dashboard/myEnrollClass">My enroll class</NavLink></li>
     </>;
     const adminNav = <>
-        <li><NavLink to="/dashboard/teacherReq">Teacher Request</NavLink></li>
+        <li><NavLink to="/dashboard">Teacher Request</NavLink></li>
         <li><NavLink to="/AllUsers">Users</NavLink></li>
         <li><NavLink to="/admin/AllClasses">All classes</NavLink></li>
     </>;

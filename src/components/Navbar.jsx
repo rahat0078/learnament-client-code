@@ -50,7 +50,7 @@ const Navbar = () => {
                         </div>
                         <ul tabIndex={0} className="dropdown-content menu bg-base-200 rounded-box z-[1] w-52 right-0 p-2 shadow-xl">
                             <p className="text-center py-2 text-lg font-semibold">{user?.displayName}</p>
-                            <li><Link to="/dashboard">Dashboard</Link></li>
+                            <li><Link to="/dashboard/profile">Dashboard</Link></li>
                             <li><a onClick={handleLogout} className="text-[#05A698]"><FaArrowRightFromBracket />
                                 Logout</a></li>
                         </ul>
