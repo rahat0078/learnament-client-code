@@ -45,7 +45,7 @@ const Navbar = () => {
                     user?.email ? <div className="dropdown dropdown-hover">
                         <div tabIndex={0} role="button">
                             <div className="w-14 h-14">
-                                <img className="w-full h-14 rounded-full object-fill" src={user?.photoURL} />
+                                <img className="w-full h-14 border rounded-full object-fill" src={user?.photoURL} />
                             </div>
                         </div>
                         <ul tabIndex={0} className="dropdown-content menu bg-base-200 rounded-box z-[1] w-52 right-0 p-2 shadow-xl">

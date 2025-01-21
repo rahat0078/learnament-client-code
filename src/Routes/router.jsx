@@ -8,6 +8,7 @@ import Dashboard from "../Layouts/Dashboard";
 import Register from "../components/Register";
 import PrivateRoute from "../private/PrivateRoute";
 import MyProfile from "../components/MyProfile";
+import AllUsers from "../DashboardPages/Admin/AllUsers";
 
 const router = createBrowserRouter([
     {
@@ -47,6 +48,13 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/profile",
                 element: <MyProfile/>
+            },
+
+
+            // admin route 
+            {
+                path:'/dashboard/AllUsers',
+                element: <AllUsers/>
             }
         ]
     }

@@ -28,20 +28,22 @@ const Register = () => {
         formData.append("image", imgFile);
         const res = await axios.post(`https://api.imgbb.com/1/upload?key=${imgbbApiKey}`, formData)
         // FORM DATA
-        const photo = res?.data?.data?.display_url
+        const photo = res?.data.data.display_url
         const email = data?.email
         const password = data?.password
         const name = data?.name
 
+        // console.log(photo);
+
         // user registration 
         registerUser(email, password)
-            .then(res => {
-                console.log(res.user.email);
+            .then(() => {
                 updateUserProfile(name, photo)
                     .then(() => {
                         const userInfo = {
                             name: data.name,
                             email: data.email,
+                            image: photo,
 
                         }
                         axiosPublic.post('/users', userInfo)

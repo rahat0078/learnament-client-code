@@ -14,11 +14,11 @@ const Dashboard = () => {
 
 
     // eslint-disable-next-line no-unused-vars
-    const [student, setStudent] = useState(true)
+    const [student, setStudent] = useState(false)
     // eslint-disable-next-line no-unused-vars
     const [teacher, setTeacher] = useState(false)
     // eslint-disable-next-line no-unused-vars
-    const [admin, setAdmin] = useState(false)
+    const [admin, setAdmin] = useState(true)
 
 
 
@@ -30,8 +30,8 @@ const Dashboard = () => {
         <li><NavLink to="/dashboard/myEnrollClass">My enroll class</NavLink></li>
     </>;
     const adminNav = <>
-        <li><NavLink to="/dashboard">Teacher Request</NavLink></li>
-        <li><NavLink to="/AllUsers">Users</NavLink></li>
+        <li><NavLink to="/dashboard/teacherReq">Teacher Request</NavLink></li>
+        <li><NavLink to="/dashboard/AllUsers">Users</NavLink></li>
         <li><NavLink to="/admin/AllClasses">All classes</NavLink></li>
     </>;
     const teacherNav = <>

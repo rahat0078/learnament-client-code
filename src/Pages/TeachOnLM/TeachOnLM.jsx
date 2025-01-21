@@ -10,6 +10,7 @@ import { IoIosDoneAll } from "react-icons/io";
 import Lottie from "lottie-react";
 import teacherApproveCelebrate from '../../assets/Lottie/teacherApproveCelebrate.json';
 import { ImCross } from "react-icons/im";
+import LoadingSpinner from './../../components/LoadingSpinner';
 
 const TeachOnLM = () => {
 
@@ -17,7 +18,7 @@ const TeachOnLM = () => {
     const { user } = useAuth()
     const axiosSecure = useAxiosSecure()
 
-    const { data = [], refetch } = useQuery({
+    const { data = [], isPending, refetch } = useQuery({
         queryKey: ['teacherReq'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/teacherReq/${user?.email}`)
@@ -67,6 +68,12 @@ const TeachOnLM = () => {
 
     }
 
+
+    if(isPending){
+        return <>
+            <LoadingSpinner/>
+        </>
+    }
 
     return (
         <div className="container mx-auto min-h-screen pt-12 px-4">
