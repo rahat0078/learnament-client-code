@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import HelmetTitle from "../../components/HelmetTitle";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import LoadingSpinner from "../../components/LoadingSpinner";
 import { FaSearch } from "react-icons/fa";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -11,8 +10,8 @@ const AllUsers = () => {
     const axiosSecure = useAxiosSecure()
     const [search, setSearch] = useState("")
 
-    const { data: users = [], isPending, refetch } = useQuery({
-        queryKey: ['teacherReq'],
+    const { data: users = [], refetch } = useQuery({
+        queryKey: ['teacherReq', { search }],
         queryFn: async () => {
             const res = await axiosSecure.get(`/users?search=${search}`)
             return res.data
@@ -33,18 +32,12 @@ const AllUsers = () => {
 
 
 
-    if (isPending) {
-        return <>
-            <LoadingSpinner />
-        </>
-    }
-
     return (
         <div>
             <HelmetTitle title="Users"></HelmetTitle>
             <div>
                 <div className="px-2 py-6 bg-base-200 shadow-md rounded-xl">
-                    <div className="flex items-center justify-between mb-6 px-2">
+                    <div className="flex items-center gap-2 justify-between mb-6 px-2">
                         <h2 className="pl-4 font-semibold text-lg md:text-xl">All Users: {users?.length}</h2>
                         <label className="input input-bordered flex items-center gap-2 max-w-xs">
                             <input onChange={e => setSearch(e.target.value)} type="text" className="grow" placeholder="Search" />
@@ -59,7 +52,7 @@ const AllUsers = () => {
                                     <th>Image</th>
                                     <th>Name</th>
                                     <th>Email</th>
-                                    <th>Action</th>
+                                    <th className="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
