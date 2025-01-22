@@ -32,19 +32,20 @@ const Register = () => {
         const email = data?.email
         const password = data?.password
         const name = data?.name
+        const number = data?.number
 
         // console.log(photo);
 
         // user registration 
         registerUser(email, password)
             .then(() => {
-                updateUserProfile(name, photo)
+                updateUserProfile(name, photo, number)
                     .then(() => {
                         const userInfo = {
                             name: data.name,
                             email: data.email,
                             image: photo,
-
+                            phone: number,
                         }
                         axiosPublic.post('/users', userInfo)
                             .then(res => {
@@ -90,6 +91,18 @@ const Register = () => {
                                 <input {...register("name", { required: true })} type="text" placeholder="Name" className="input input-bordered" />
                                 {errors.name?.type === "required" && (
                                     <p className="text-red-500 pt-4">Name is required</p>
+                                )}
+
+                            </div>
+
+                            {/* phn number  */}
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Number</span>
+                                </label>
+                                <input {...register("number", { required: true })} type="number" placeholder="Number" className="input input-bordered" />
+                                {errors.number?.type === "required" && (
+                                    <p className="text-red-500 pt-4">Number is required</p>
                                 )}
 
                             </div>

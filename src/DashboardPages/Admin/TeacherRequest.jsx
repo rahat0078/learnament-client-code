@@ -11,22 +11,30 @@ const TeacherRequest = () => {
     const axiosSecure = useAxiosSecure()
 
     const { data: teacherRequests = [], refetch } = useQuery({
-        queryKey: ['teacherReq', { search }],
+        queryKey: ['teachersRequests', { search }],
         queryFn: async () => {
             const res = await axiosSecure.get(`/teachersRequests?search=${search}`)
             return res.data
         }
     })
 
+
     const handleApprove = (user) => {
         axiosSecure.patch(`/teacher/approve/${user._id}`)
             .then(res => {
                 if (res.data.modifiedCount > 0) {
-                    toast.success(`${user.name} is teacher now`, { position: "top-right", duration: 4000, });
+                    axiosSecure.patch(`/user/setTeacher/${user.email}`)
+                        .then(res => {
+                            if (res.data.modifiedCount > 0) {
+                                toast.success(`${user.name} is teacher now`, { position: "top-right", duration: 4000, });
+                            }
+                        })
                     refetch()
                 }
             })
     }
+
+
     const handleReject = (user) => {
         axiosSecure.patch(`/teacher/reject/${user._id}`)
             .then(res => {

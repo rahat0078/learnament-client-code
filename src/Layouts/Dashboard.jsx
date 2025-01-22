@@ -3,25 +3,27 @@ import useAuth from "../hooks/useAuth";
 import loadingGif from "../assets/loading.gif";
 import { FaList } from "react-icons/fa6";
 import { NavLink, Outlet } from "react-router-dom";
-import { useState } from "react";
 import HelmetTitle from "../components/HelmetTitle";
 import { FaHome } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 
 const Dashboard = () => {
 
-    const { loading } = useAuth()
+    const { loading, user } = useAuth()
+    const axiosSecure = useAxiosSecure()
 
+    const { data = [] } = useQuery({
+        queryKey: ['/user', user?.email,],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/user/${user?.email}`)
+            return res.data
+        }
+    })
 
-    // eslint-disable-next-line no-unused-vars
-    const [student, setStudent] = useState(false)
-    // eslint-disable-next-line no-unused-vars
-    const [teacher, setTeacher] = useState(false)
-    // eslint-disable-next-line no-unused-vars
-    const [admin, setAdmin] = useState(true)
-
-
-
+    const userData = data[0];
+    console.log(userData?.email);
 
     // Links
 
@@ -65,7 +67,7 @@ const Dashboard = () => {
                     </div>
 
                     <div className="flex justify-center items-center min-h-screen">
-                    <Outlet />
+                        <Outlet />
                     </div>
 
                 </div>
@@ -76,13 +78,11 @@ const Dashboard = () => {
 
                         {/* dynamic for teacher, admin, students  */}
                         {
-                            student && studentsNav
-                        }
-                        {
-                            teacher && teacherNav
-                        }
-                        {
-                            admin && adminNav
+                            userData?.role === 'admin'
+                                ? adminNav
+                                : userData?.isTeacher
+                                    ? teacherNav
+                                    : studentsNav
                         }
 
                         {/* common  */}
