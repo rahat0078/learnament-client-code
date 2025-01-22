@@ -42,7 +42,6 @@ const SocialLogin = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
-                console.log(err.message);
                 setLoading(false)
             })
     }

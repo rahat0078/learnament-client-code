@@ -6,26 +6,14 @@ import { NavLink, Outlet } from "react-router-dom";
 import HelmetTitle from "../components/HelmetTitle";
 import { FaHome } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
-import useAxiosSecure from "../hooks/useAxiosSecure";
-import { useQuery } from "@tanstack/react-query";
+import useAdmin from "../hooks/useAdmin";
+import useTeacher from "../hooks/useTeacher";
 
 const Dashboard = () => {
 
-    const { loading, user } = useAuth()
-    const axiosSecure = useAxiosSecure()
-
-    const { data = [] } = useQuery({
-        queryKey: ['/user', user?.email,],
-        queryFn: async () => {
-            const res = await axiosSecure.get(`/user/${user?.email}`)
-            return res.data
-        }
-    })
-
-    const userData = data[0];
-    console.log(userData?.email);
-
-    // Links
+    const { loading } = useAuth()
+    const {isAdmin} = useAdmin()
+    const {isTeacher} = useTeacher()
 
     // Students Navlinks
     const studentsNav = <>
@@ -41,8 +29,6 @@ const Dashboard = () => {
         <li><NavLink>My class</NavLink></li>
         <li><NavLink>All classes</NavLink></li>
     </>;
-
-
 
     if (loading) {
         return <>
@@ -75,14 +61,10 @@ const Dashboard = () => {
                     <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
                     <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
                         {/* Sidebar content here */}
-
                         {/* dynamic for teacher, admin, students  */}
+                      
                         {
-                            userData?.role === 'admin'
-                                ? adminNav
-                                : userData?.isTeacher
-                                    ? teacherNav
-                                    : studentsNav
+                            isAdmin ? adminNav : isTeacher ? teacherNav : studentsNav
                         }
 
                         {/* common  */}

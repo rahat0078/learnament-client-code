@@ -20,8 +20,7 @@ const Login = () => {
         const password = data.password
 
         loginUser(email, password)
-            .then(res => {
-                // console.log(res.user);
+            .then(() => {
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
@@ -32,8 +31,7 @@ const Login = () => {
                 navigate('/')
                 reset()
             })
-            .catch(err => {
-                console.log(err.message);
+            .catch(() => {
                 Swal.fire({
                     position: "top-start",
                     icon: "error",

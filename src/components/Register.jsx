@@ -34,7 +34,6 @@ const Register = () => {
         const name = data?.name
         const number = data?.number
 
-        // console.log(photo);
 
         // user registration 
         registerUser(email, password)
@@ -65,8 +64,7 @@ const Register = () => {
                             })
                     })
             })
-            .catch((error) => {
-                console.log(error.message);
+            .catch(() => {
                 setLoading(false)
             })
 

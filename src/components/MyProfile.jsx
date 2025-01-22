@@ -8,7 +8,7 @@ const MyProfile = () => {
     const { user, logoutUser } = useAuth()
     const axiosSecure = useAxiosSecure()
 
-    const { data = [] } = useQuery({
+    const { data: userData } = useQuery({
         queryKey: ['/user', user?.email,],
         queryFn: async () => {
             const res = await axiosSecure.get(`/user/${user?.email}`)
@@ -16,8 +16,6 @@ const MyProfile = () => {
         }
     })
 
-    const userData = data[0];
-    console.log(userData);
 
 
 

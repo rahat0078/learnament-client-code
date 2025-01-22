@@ -33,7 +33,6 @@ const TeachOnLM = () => {
 
         axiosSecure.post('/teacherReq', data)
             .then(res => {
-                console.log(res.data);
                 if (res.data.insertedId) {
                     refetch()
                     Swal.fire({
@@ -52,7 +51,6 @@ const TeachOnLM = () => {
     const applyAgain = () => {
         axiosSecure.patch(`/teacherReqAgain/${data?._id}`)
             .then(res => {
-                console.log(res.data);
                 if (res.data.modifiedCount > 0) {
                     refetch()
                     Swal.fire({
