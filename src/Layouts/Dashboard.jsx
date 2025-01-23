@@ -26,7 +26,7 @@ const Dashboard = () => {
     </>;
     const teacherNav = <>
         <li><NavLink to="/dashboard/addClass">Add class</NavLink></li>
-        <li><NavLink to="/dashboard/myClass">My class</NavLink></li>
+        <li><NavLink to="/dashboard/myClass">My classes</NavLink></li>
     </>;
 
     if (loading) {

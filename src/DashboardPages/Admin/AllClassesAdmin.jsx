@@ -102,7 +102,8 @@ const AllClassesAdmin = () => {
                                     >
                                         {classItem.status}
                                     </span>
-                                    <button className="btn btn-xs text-white bg-[#05A698] hover:bg-[#058ea6] ml-2">
+                                    <button className="btn btn-xs text-white bg-[#05A698] hover:bg-[#058ea6] ml-2"
+                                    disabled={classItem.status !== "approved"}>
                                         Progress
                                     </button>
                                 </td>
