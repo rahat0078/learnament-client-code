@@ -22,12 +22,11 @@ const Dashboard = () => {
     const adminNav = <>
         <li><NavLink to="/dashboard/teacherReq">Teacher Request</NavLink></li>
         <li><NavLink to="/dashboard/AllUsers">Users</NavLink></li>
-        <li><NavLink to="/admin/AllClasses">All classes</NavLink></li>
+        <li><NavLink to="/dashboard/admin/AllClasses">All classes</NavLink></li>
     </>;
     const teacherNav = <>
-        <li><NavLink>Add class</NavLink></li>
-        <li><NavLink>My class</NavLink></li>
-        <li><NavLink>All classes</NavLink></li>
+        <li><NavLink to="/dashboard/addClass">Add class</NavLink></li>
+        <li><NavLink to="/dashboard/myClass">My class</NavLink></li>
     </>;
 
     if (loading) {
@@ -59,7 +58,7 @@ const Dashboard = () => {
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-                    <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+                    <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4 gap-2">
                         {/* Sidebar content here */}
                         {/* dynamic for teacher, admin, students  */}
                       

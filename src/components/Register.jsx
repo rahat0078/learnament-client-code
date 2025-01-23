@@ -50,6 +50,7 @@ const Register = () => {
                             .then(res => {
                                 if (res.data.insertedId) {
                                     {
+                                        navigate('/')
                                         Swal.fire({
                                             position: "top-end",
                                             icon: "success",
@@ -58,7 +59,6 @@ const Register = () => {
                                             timer: 1500
                                         });
                                         reset()
-                                        navigate('/')
                                     }
                                 }
                             })

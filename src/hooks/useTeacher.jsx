@@ -7,14 +7,14 @@ const useTeacher = () => {
     const { user } = useAuth()
     const axiosSecure = useAxiosSecure()
 
-    const { data: isTeacher } = useQuery({
+    const { data: isTeacher, isPending } = useQuery({
         queryKey: [user?.email, 'isTeacher'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/user/teacher/${user?.email}`)
             return res?.data?.teacher
         }
     })
-    return { isTeacher }
+    return { isTeacher, isPending }
 };
 
 export default useTeacher;

@@ -10,6 +10,11 @@ import PrivateRoute from "../private/PrivateRoute";
 import MyProfile from "../components/MyProfile";
 import AllUsers from "../DashboardPages/Admin/AllUsers";
 import TeacherRequest from "../DashboardPages/Admin/TeacherRequest";
+import AdminRoute from "../private/AdminRoute";
+import AddClass from "../DashboardPages/Teacher/AddClass";
+import MyClass from "../DashboardPages/Teacher/MyClass";
+import TeacherRoute from "../private/TeacherRoute";
+import MyEnrollClass from "../DashboardPages/User/MyEnrollClass";
 
 const router = createBrowserRouter([
     {
@@ -48,18 +53,40 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "/dashboard/profile",
-                element: <MyProfile/>
+                element: <MyProfile />
             },
 
 
+            // teacher route 
+            {
+                path: "/dashboard/addClass",
+                element: <TeacherRoute>
+                    <AddClass />
+                </TeacherRoute>
+            },
+            {
+                path: "/dashboard/myClass",
+                element: <TeacherRoute>
+                    <MyClass />
+                </TeacherRoute>
+            },
+            // student route
+            {
+                path: "/dashboard/myEnrollClass",
+                element: <MyEnrollClass/>
+            },
             // admin route 
             {
-                path:'/dashboard/AllUsers',
-                element: <AllUsers/>
+                path: '/dashboard/AllUsers',
+                element: <AdminRoute>
+                    <AllUsers />
+                </AdminRoute>
             },
             {
-                path:'/dashboard/teacherReq',
-                element: <TeacherRequest/>
+                path: '/dashboard/teacherReq',
+                element: <AdminRoute>
+                    <TeacherRequest />
+                </AdminRoute>
             },
         ]
     }
