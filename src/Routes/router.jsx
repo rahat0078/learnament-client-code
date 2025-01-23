@@ -15,6 +15,7 @@ import AddClass from "../DashboardPages/Teacher/AddClass";
 import MyClass from "../DashboardPages/Teacher/MyClass";
 import TeacherRoute from "../private/TeacherRoute";
 import MyEnrollClass from "../DashboardPages/User/MyEnrollClass";
+import AllClassesAdmin from "../DashboardPages/Admin/AllClassesAdmin";
 
 const router = createBrowserRouter([
     {
@@ -70,11 +71,13 @@ const router = createBrowserRouter([
                     <MyClass />
                 </TeacherRoute>
             },
+            
             // student route
             {
                 path: "/dashboard/myEnrollClass",
                 element: <MyEnrollClass/>
             },
+
             // admin route 
             {
                 path: '/dashboard/AllUsers',
@@ -88,6 +91,12 @@ const router = createBrowserRouter([
                     <TeacherRequest />
                 </AdminRoute>
             },
+            {
+                path: "/dashboard/admin/AllClasses",
+                element: <AdminRoute>
+                    <AllClassesAdmin></AllClassesAdmin>
+                </AdminRoute>
+            }
         ]
     }
 ]);
