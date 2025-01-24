@@ -4,6 +4,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 
 
@@ -20,26 +21,32 @@ const MyClass = () => {
         }
     })
 
-
-    const handleUpdate = (classItem) => {
-        console.log("Update class with :", classItem);
-    };
-
     const handleDelete = (classItem) => {
         console.log("Delete class with :", classItem);
-        axiosSecure.delete(`/class/delete/${classItem._id}`)
-            .then(res => {
-                if (res.data.deletedCount) {
-                    refetch()
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: "Class Delete Successfully",
-                        showConfirmButton: false,
-                        timer: 1000
-                    });
-                }
-            })
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.delete(`/class/delete/${classItem._id}`)
+                    .then(res => {
+                        if (res.data.deletedCount) {
+                            refetch()
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Class deleted successfully",
+                                icon: "success"
+                            });
+                        }
+                    })
+                
+            }
+        });
     };
 
     const handleViewDetails = (classItem) => {
@@ -82,13 +89,13 @@ const MyClass = () => {
                             </div>
                             <div className="card-actions mt-4 flex justify-between">
                                 <div className="flex gap-4 items-center">
-                                    <button
+                                    <Link
+                                        to={`/dashboard/classUp/${classItem._id}`}
                                         className="btn btn-sm btn-primary"
-                                        onClick={() => handleUpdate(classItem)}
                                         disabled={classItem.status === "rejected"}
                                     >
                                         <FaEdit />
-                                    </button>
+                                    </Link>
                                     <button
                                         className="btn btn-sm btn-error "
                                         onClick={() => handleDelete(classItem)}
