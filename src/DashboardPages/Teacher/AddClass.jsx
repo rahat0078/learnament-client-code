@@ -19,7 +19,7 @@ const AddClass = () => {
         const formData = new FormData();
         formData.append("image", imgFile);
         const res = await axios.post(`https://api.imgbb.com/1/upload?key=${imgbbApiKey}`, formData)
-        const image = res?.data.data.display_url
+        const image = res?.data?.data?.display_url
         // FORM DATA
         const classInfo = {
             title: data.title,

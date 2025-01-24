@@ -21,8 +21,6 @@ const MyClass = () => {
     })
 
 
-
-
     const handleUpdate = (classItem) => {
         console.log("Update class with :", classItem);
     };

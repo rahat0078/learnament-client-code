@@ -18,7 +18,7 @@ const MainLayout = () => {
     }
     return (
         <div className='font-funnelSans'>
-            <div className='bg-base-200 sticky top-0 z-10'>
+            <div className='bg-base-200 sticky top-0 z-50'>
                 <Navbar />
             </div>
             <Outlet />

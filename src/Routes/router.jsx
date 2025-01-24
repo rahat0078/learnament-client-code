@@ -16,6 +16,7 @@ import MyClass from "../DashboardPages/Teacher/MyClass";
 import TeacherRoute from "../private/TeacherRoute";
 import MyEnrollClass from "../DashboardPages/User/MyEnrollClass";
 import AllClassesAdmin from "../DashboardPages/Admin/AllClassesAdmin";
+import ClassDetails from "../Pages/AllClasses/ClassDetails";
 
 const router = createBrowserRouter([
     {
@@ -29,6 +30,12 @@ const router = createBrowserRouter([
             {
                 path: "/allClasses",
                 element: <AllClasses />
+            },
+            {
+                path: "/class/:id",
+                element: <PrivateRoute>
+                    <ClassDetails/>
+                </PrivateRoute>
             },
             {
                 path: "/TeachOnLearnament",
