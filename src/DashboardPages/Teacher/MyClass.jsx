@@ -44,14 +44,11 @@ const MyClass = () => {
                             });
                         }
                     })
-                
+
             }
         });
     };
 
-    const handleViewDetails = (classItem) => {
-        console.log("View details for class with :", classItem);
-    };
 
     return (
         <div className="px-6 my-16">
@@ -103,13 +100,13 @@ const MyClass = () => {
                                         <FaTrashAlt />
                                     </button>
                                 </div>
-                                <button
+                                <Link
+                                    to={`/dashboard/my-class/${classItem._id}`}
                                     className="btn btn-sm text-white bg-[#05A698] hover:bg-[#058ea6] flex items-center gap-1"
-                                    onClick={() => handleViewDetails(classItem)}
                                     disabled={classItem.status !== "approved"}
                                 >
                                     <FaEye /> See Details
-                                </button>
+                                </Link>
                             </div>
                         </div>
                     </div>
