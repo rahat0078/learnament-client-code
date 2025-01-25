@@ -1,11 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
 
 const ClassDetails = () => {
     const { id } = useParams()
-
+    const {user } = useAuth()
     const axiosSecure = useAxiosSecure()
+    const navigate = useNavigate()
 
     const { data: classData = {}, } = useQuery({
         queryKey: ["/class", id],
@@ -15,7 +18,44 @@ const ClassDetails = () => {
         }
     })
 
-    console.log(classData);
+    const handlePayment = (classInfo) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You want to enroll this course?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes"
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                const enorllInfo = {
+                    classId: classInfo._id,
+                    title: classInfo.title,
+                    name: classInfo.name,
+                    image: classInfo.image,
+                    studentEmail: user?.email
+                }
+                axiosSecure.post('/enrollClass', enorllInfo)
+                .then(res => {
+                    if(res.data.insertedId){
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "Successfully enroll this course",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        navigate("/dashboard/myEnrollClass")
+                    }
+                })
+            }
+        });
+    }
+
+
+
     return (
         <div className="container mx-auto my-16 lg:my-24 px-4">
             <div className="card lg:card-side shadow-xl max-w-5xl w-full mx-auto">
@@ -36,7 +76,7 @@ const ClassDetails = () => {
                     }
                     </p>
                     <div className="card-actions justify-end">
-                        <button className="btn md:text-lg text-white bg-[#05A698] hover:bg-[#058ea6]">Make Payment</button>
+                        <button onClick={() => handlePayment(classData)} className="btn md:text-lg text-white bg-[#05A698] hover:bg-[#058ea6]">Make Payment</button>
                     </div>
                 </div>
             </div>

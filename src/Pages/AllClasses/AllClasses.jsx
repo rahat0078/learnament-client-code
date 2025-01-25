@@ -4,12 +4,13 @@ import { useQuery } from '@tanstack/react-query';
 import useAxiosPublic from './../../hooks/useAxiosPublic';
 import { GiWideArrowDunk } from 'react-icons/gi';
 import { Link } from 'react-router-dom';
+import LoadingSpinner from './../../components/LoadingSpinner';
 
 const AllClasses = () => {
 
     const axiosPublic = useAxiosPublic()
 
-    const { data: classes = [], } = useQuery({
+    const { data: classes = [],  isPending } = useQuery({
         queryKey: ["/allClasses"],
         queryFn: async () => {
             const res = await axiosPublic.get("/allClasses")
@@ -18,6 +19,9 @@ const AllClasses = () => {
     })
 
 
+    if(isPending){
+        return <LoadingSpinner/>
+    }
     return (
         <div className='container mx-auto px-4'>
             <HelmetTitle title="All Classes"></HelmetTitle>
