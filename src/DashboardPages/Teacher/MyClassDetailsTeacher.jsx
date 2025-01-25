@@ -68,7 +68,7 @@ const MyClassDetailsTeacher = () => {
                 <div className="stat">
                     <div className="stat-title">Total  Assignment submission</div>
                     <div className="stat-value mt-4">
-                        {classDetails?.assignmentSubmit ? classDetails.assignmentSubmit : "0"}
+                        {classDetails?.totalAssignmentSubmit ? classDetails.totalAssignmentSubmit : "0"}
                     </div>
                 </div>
             </div>
@@ -80,7 +80,7 @@ const MyClassDetailsTeacher = () => {
             </div>
 
 
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto w-full">
                 <table className="table">
                     {/* head */}
                     <thead>

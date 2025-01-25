@@ -36,7 +36,7 @@ const AllClasses = () => {
                             />
                             <span className="absolute right-4 bottom-5 w-20 h-20">
                                 <span className="absolute top-0 left-0 w-full h-full bg-orange-500 rotate-45 rounded-lg z-10"></span>
-                                <span className="absolute w-full h-full text-center pt-2 text-white z-20">
+                                <span className="absolute w-full h-full text-center pt-2 text-white z-20 font-bold">
                                     {
                                     classItem?.enrollmentCount ? classItem?.enrollmentCount : '0' 
                                     } <br /> Enrollment

@@ -4,6 +4,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
 import { FaArrowTrendUp } from "react-icons/fa6";
 import SectionHeading from "../../components/SectionHeading";
+import { Link } from "react-router-dom";
 
 const MyEnrollClass = () => {
 
@@ -43,10 +44,10 @@ const MyEnrollClass = () => {
                         <p className=""><strong>Instructor:</strong> {classItem.name}</p>
                         </div>
                         <div className="card-actions">
-                            <button className="mt-4 btn md:text-lg text-white bg-[#05A698] hover:bg-[#058ea6]">
+                            <Link to={`/dashboard/myenroll-class/${classItem.classId}`} className="mt-4 btn md:text-lg text-white bg-[#05A698] hover:bg-[#058ea6]">
                                 Continue <FaArrowTrendUp />
 
-                                </button>
+                                </Link>
                         </div>
                     </div>
                 </div>
