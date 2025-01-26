@@ -4,10 +4,13 @@ import { useQuery } from "@tanstack/react-query";
 import { TiPlus } from "react-icons/ti";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import useTeacher from "../../hooks/useTeacher";
 
 const MyClassDetailsTeacher = () => {
     const { id } = useParams()
     const axiosSecure = useAxiosSecure()
+    const { isTeacher } = useTeacher()
+    console.log(isTeacher);
     const { register, formState: { errors }, reset, handleSubmit } = useForm();
 
     const { data: classDetails, refetch: refetchClassDetails } = useQuery({
@@ -72,12 +75,14 @@ const MyClassDetailsTeacher = () => {
                     </div>
                 </div>
             </div>
-            <div>
+            {
+                isTeacher ? <div>
                 <button
                     onClick={() => document.getElementById('my_modal_1').showModal()}
                     className="btn md:text-lg rounded-full text-white bg-[#05A698] hover:bg-[#058ea6]"><TiPlus />
                     Create</button>
-            </div>
+            </div>: ""
+            }
 
 
             <div className="overflow-x-auto w-full">
@@ -93,12 +98,12 @@ const MyClassDetailsTeacher = () => {
                     </thead>
                     <tbody>
                         {
-                            assignments?.map((a, index ) => <tr key={a._id}>
-                            <th>{index + 1}</th>
-                            <td>{a.title}</td>
-                            <td>{a.description}</td>
-                            <td>{a.deadline}</td>
-                        </tr>)
+                            assignments?.map((a, index) => <tr key={a._id}>
+                                <th>{index + 1}</th>
+                                <td>{a.title}</td>
+                                <td>{a.description}</td>
+                                <td>{a.deadline}</td>
+                            </tr>)
                         }
                     </tbody>
                 </table>

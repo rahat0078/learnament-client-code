@@ -38,7 +38,7 @@ const router = createBrowserRouter([
             {
                 path: "/class/:id",
                 element: <PrivateRoute>
-                    <ClassDetails/>
+                    <ClassDetails />
                 </PrivateRoute>
             },
             {
@@ -84,23 +84,21 @@ const router = createBrowserRouter([
             },
             {
                 path: "/dashboard/my-class/:id",
-                element: <TeacherRoute>
-                    <MyClassDetailsTeacher/>
-                </TeacherRoute>
+                element: <MyClassDetailsTeacher />
             },
             {
                 path: "/dashboard/classUp/:id",
                 element: <TeacherRoute>
-                    <UpdateClass/>
+                    <UpdateClass />
                 </TeacherRoute>
             },
 
 
-            
+
             // student route
             {
                 path: "/dashboard/myEnrollClass",
-                element: <MyEnrollClass/>
+                element: <MyEnrollClass />
             },
             {
                 path: "/dashboard/myenroll-class/:id",
@@ -108,7 +106,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/dashboard/feedback/:id",
-                element: <GiveFeedback/>
+                element: <GiveFeedback />
             },
 
 

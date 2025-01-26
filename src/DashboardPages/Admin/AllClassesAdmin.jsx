@@ -3,6 +3,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import SectionHeading from "../../components/SectionHeading";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const AllClassesAdmin = () => {
     const axiosSecure = useAxiosSecure()
@@ -102,10 +103,10 @@ const AllClassesAdmin = () => {
                                     >
                                         {classItem.status}
                                     </span>
-                                    <button className="btn btn-xs text-white bg-[#05A698] hover:bg-[#058ea6] ml-2"
+                                    <Link to={`/dashboard/my-class/${classItem._id}`} className="btn btn-xs text-white bg-[#05A698] hover:bg-[#058ea6] ml-2"
                                     disabled={classItem.status !== "approved"}>
                                         Progress
-                                    </button>
+                                    </Link>
                                 </td>
                                 <td className="flex items-center gap-2">
                                     <button
