@@ -47,7 +47,7 @@ const ClassDetails = () => {
                             showConfirmButton: false,
                             timer: 1500
                         });
-                        navigate("/dashboard/myEnrollClass")
+                        navigate(`/dashboard/myenroll-class/${id}`)
                     }
                 })
             }

@@ -22,7 +22,6 @@ const MyEnrollClassDetails = () => {
 
     const onSubmit = (data) => {
         data.classId = id
-
         axiosSecure.patch('/updateAssignment', data)
             .then(res => {
                 if (res.data.modifiedCount > 0) {
@@ -34,7 +33,7 @@ const MyEnrollClassDetails = () => {
                         timer: 1500
                     });
                     reset()
-                    document.getElementById('my_modal_1').showModal()
+                    document.getElementById('my_modal_taskSubmit').close()
                 }
 
             })
@@ -71,7 +70,7 @@ const MyEnrollClassDetails = () => {
                                 <td>{a.description}</td>
                                 <td>{a.deadline}</td>
                                 <td>
-                                    <button onClick={() => document.getElementById('my_modal_1').showModal()} className="btn btn-sm text-white bg-[#05A698] hover:bg-[#058ea6]">Submit</button>
+                                    <button onClick={() => document.getElementById('my_modal_taskSubmit').showModal()} className="btn btn-sm text-white bg-[#05A698] hover:bg-[#058ea6]">Submit</button>
                                 </td>
                             </tr>)
                         }
@@ -84,7 +83,7 @@ const MyEnrollClassDetails = () => {
 
 
             {/* Open the modal using document.getElementById('ID').showModal() method */}
-            <dialog id="my_modal_1" className="modal">
+            <dialog id="my_modal_taskSubmit" className="modal">
                 <div className="modal-box">
                     <h3 className="font-bold text-lg">Hello!</h3>
                     <p className="py-4">Press ESC key or click the button below to close</p>
