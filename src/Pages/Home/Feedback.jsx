@@ -17,44 +17,23 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
 import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const Feedback = () => {
 
+    const axiosPublic = useAxiosPublic()
 
-    const feedbacks = [
-        {
-            _id: "2fsdfsdfsdf13545",
-            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit porro explicabo exercitationem laudantium blanditiis recusandae quod ipsum voluptatem asperiores laborum eum natus illum reiciendis dolores nemo consequuntur iusto, deserunt facere.',
-            rating: 4.5,
-            name: 'John Doe',
-            image: 'https://i.ibb.co.com/C124GyT/2.jpg',
-            title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-        },
-        {
-            _id: "2fsdfsdfsdf1354fsdfdsfedf5",
-            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit porro explicabo exercitationem laudantium blanditiis recusandae quod ipsum voluptatem asperiores laborum eum natus illum reiciendis dolores nemo consequuntur iusto, deserunt facere.',
-            rating: 5,
-            name: 'Nikola Tesla',
-            image: 'https://i.ibb.co.com/7zMpmbj/3.jpg',
-            title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-        },
-        {
-            _id: "2fsdfsdfsdsfdrw3r343reff1354fsdfdsfedf5",
-            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit porro explicabo exercitationem laudantium blanditiis recusandae quod ipsum voluptatem asperiores laborum eum natus illum reiciendis dolores nemo consequuntur iusto, deserunt facere.',
-            rating: 4.2,
-            name: 'Nikola Tesla',
-            image: 'https://i.ibb.co.com/7zMpmbj/3.jpg',
-            title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-        },
-        {
-            _id: "2fsdfsdfsdf13fgdfgerggfg54fsdfdsfedf5",
-            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit porro explicabo exercitationem laudantium blanditiis recusandae quod ipsum voluptatem asperiores laborum eum natus illum reiciendis dolores nemo consequuntur iusto, deserunt facere.',
-            rating: 3.2,
-            name: 'Nikola Tesla',
-            image: 'https://i.ibb.co.com/7zMpmbj/3.jpg',
-            title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-        },
-    ]
+    const { data: feedbacks } = useQuery({
+        queryKey: ["/feedbacks"],
+        queryFn: async () => {
+            const res = await axiosPublic.get("/feedbacks")
+            return res.data
+        }
+    })
+
+
+    
 
     return (
         <div className="py-16 flex flex-col justify-center items-center">
@@ -79,7 +58,7 @@ const Feedback = () => {
                     className="mySwiper"
                 >
                     {
-                        feedbacks.map(feedback => <SwiperSlide key={feedback._id}>
+                        feedbacks?.map(feedback => <SwiperSlide key={feedback._id}>
                             <div className="flex flex-col justify-center items-center">
                                 <div>
                                     <Rating readOnly className="max-w-48" value={feedback.rating} />
@@ -91,7 +70,7 @@ const Feedback = () => {
                                     </div>
                                     <div>
                                         <h3 className="text-xl font-semibold">{feedback.title}</h3>
-                                        <p>{feedback.description}</p>
+                                        <p>{feedback.feedback}</p>
                                     </div>
 
                                 </div>

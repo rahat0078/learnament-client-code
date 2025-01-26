@@ -20,6 +20,7 @@ import ClassDetails from "../Pages/AllClasses/ClassDetails";
 import UpdateClass from "../DashboardPages/Teacher/UpdateClass";
 import MyClassDetailsTeacher from "../DashboardPages/Teacher/MyClassDetailsTeacher";
 import MyEnrollClassDetails from "../DashboardPages/User/MyEnrollClassDetails";
+import GiveFeedback from "../DashboardPages/User/GiveFeedback";
 
 const router = createBrowserRouter([
     {
@@ -104,6 +105,10 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/myenroll-class/:id",
                 element: <MyEnrollClassDetails></MyEnrollClassDetails>
+            },
+            {
+                path: "/dashboard/feedback/:id",
+                element: <GiveFeedback/>
             },
 
 

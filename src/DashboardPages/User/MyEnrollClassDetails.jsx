@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import SectionHeading from "../../components/SectionHeading";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
@@ -45,7 +45,7 @@ const MyEnrollClassDetails = () => {
         <div className="px-4">
             <SectionHeading title="View All Assignments for This Course" description="Access all course assignments, including details, deadlines, and submission requirements, in one place."></SectionHeading>
             <div>
-                <button className="btn md:text-lg text-white bg-[#05A698] hover:bg-[#058ea6]">Give Feedback</button>
+                <Link to={`/dashboard/feedback/${id}`} className="btn md:text-lg text-white bg-[#05A698] hover:bg-[#058ea6]">Give Feedback</Link>
             </div>
             <h2 className="text-xl mt-4 font-semibold">
                 All assignments
@@ -85,8 +85,6 @@ const MyEnrollClassDetails = () => {
             {/* Open the modal using document.getElementById('ID').showModal() method */}
             <dialog id="my_modal_taskSubmit" className="modal">
                 <div className="modal-box">
-                    <h3 className="font-bold text-lg">Hello!</h3>
-                    <p className="py-4">Press ESC key or click the button below to close</p>
                     <div className="modal-action flex flex-col">
                         <form onSubmit={handleSubmit(onSubmit)} className="card-body">
                             {/* description  */}
