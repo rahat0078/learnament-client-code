@@ -22,7 +22,6 @@ const MyClass = () => {
     })
 
     const handleDelete = (classItem) => {
-        console.log("Delete class with :", classItem);
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",

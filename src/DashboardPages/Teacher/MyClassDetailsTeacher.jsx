@@ -10,7 +10,6 @@ const MyClassDetailsTeacher = () => {
     const { id } = useParams()
     const axiosSecure = useAxiosSecure()
     const { isTeacher } = useTeacher()
-    console.log(isTeacher);
     const { register, formState: { errors }, reset, handleSubmit } = useForm();
 
     const { data: classDetails, refetch: refetchClassDetails } = useQuery({
@@ -29,12 +28,10 @@ const MyClassDetailsTeacher = () => {
         }
     })
 
-    console.log(assignments);
 
     const onSubmit = (data) => {
         data.totalAssignmentSubmit = 0
         data.classId = id
-        console.log(data);
         axiosSecure.post('/createAssignment', data)
             .then(res => {
                 if (res.data.insertedId) {

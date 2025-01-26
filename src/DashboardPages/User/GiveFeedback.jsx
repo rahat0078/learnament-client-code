@@ -42,7 +42,6 @@ const GiveFeedback = () => {
 
         axiosSecure.post("/feedback", data)
         .then(res =>  {
-            console.log(res.data);
             if(res.data.insertedId){
                 navigate(`/dashboard/myenroll-class/${id}`)
                 Swal.fire({

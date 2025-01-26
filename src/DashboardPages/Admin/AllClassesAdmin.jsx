@@ -19,7 +19,6 @@ const AllClassesAdmin = () => {
     const handleApprove = (classItem) => {
         axiosSecure.patch(`/classes/approveAdmin/${classItem._id}`)
             .then(res => {
-                console.log(res.data);
                 if (res.data.modifiedCount > 0) {
                     Swal.fire({
                         position: "top-end",
@@ -30,16 +29,12 @@ const AllClassesAdmin = () => {
                     });
                     refetch()
                 }
-            })
-            .catch(err => {
-                console.log(err.message);
             })
     }
 
     const handleReject = (classItem) => {
         axiosSecure.patch(`/classes/rejectAdmin/${classItem._id}`)
             .then(res => {
-                console.log(res.data);
                 if (res.data.modifiedCount > 0) {
                     Swal.fire({
                         position: "top-end",
@@ -50,9 +45,6 @@ const AllClassesAdmin = () => {
                     });
                     refetch()
                 }
-            })
-            .catch(err => {
-                console.log(err.message);
             })
     }
 
