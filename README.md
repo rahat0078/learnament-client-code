@@ -2,8 +2,7 @@
 
 Learnament is a modern educational platform designed to revolutionize skill learning and class management. Built with the MERN stack, it provides seamless interaction between educational institutions, tutors, and students.
 
-#### 🌐 Live Website
-[Learnament](https://learnament.web.app/)
+#### 🌐 Live Website: [Learnament](https://learnament.web.app/)
 
 ---
 
