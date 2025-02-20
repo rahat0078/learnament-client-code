@@ -48,25 +48,20 @@ const Navbar = () => {
             </div>
             <div className="navbar-end">
                 <label className="swap swap-rotate mr-4">
-                    <input type="checkbox" />
-                    {/* sun icon */}
+                    <input
+                        type="checkbox"
+                        checked={theme === "dark"}
+                        onChange={() => setTheme(theme === "dark" ? "light" : "dark")}
+                    />
                     {
                         theme === "dark" ? (
-                            <LuSunMedium
-                                onClick={() => setTheme("light")}
-                                className="swap-on h-8 w-8 fill-current"
-                            />
+                            <LuSunMedium className="swap-on h-8 w-8 fill-current" />
                         ) : (
-                            <FaMoon
-                                onClick={() => setTheme("dark")}
-                                className="swap-off h-8 w-8 fill-current"
-                            />
+                            <FaMoon className="swap-off h-8 w-8 fill-current" />
                         )
                     }
-
-
-
                 </label>
+
                 {
                     user?.email ? <div className="dropdown dropdown-hover">
                         <div tabIndex={0} role="button">

@@ -8,8 +8,12 @@ import {
     AccordionItemPanel,
 } from 'react-accessible-accordion';
 import 'react-accessible-accordion/dist/fancy-example.css';
+import { useContext } from 'react';
+import ThemeContext from './../../Provider/ThemeContext';
 
 const Faq = () => {
+
+    const {theme} = useContext(ThemeContext)
 
 
     const faqData = [
@@ -54,7 +58,10 @@ const Faq = () => {
                     {
                         faqData.map(item => <AccordionItem key={item._id}>
                             <AccordionItemHeading>
-                                <AccordionItemButton>
+                                <AccordionItemButton className={
+                                    theme === "dark" ? "px-6 py-4 bg-gray-800" : "px-6 py-4 bg-gray-100"
+                                    
+                                }>
                                     {item.question}
                                 </AccordionItemButton>
                             </AccordionItemHeading>
