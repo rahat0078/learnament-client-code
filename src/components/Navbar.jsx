@@ -51,14 +51,14 @@ const Navbar = () => {
                     <input type="checkbox" />
                     {/* sun icon */}
                     {
-                        theme === "light" ? (
+                        theme === "dark" ? (
                             <LuSunMedium
-                                onClick={() => setTheme("dark")}
+                                onClick={() => setTheme("light")}
                                 className="swap-on h-8 w-8 fill-current"
                             />
                         ) : (
                             <FaMoon
-                                onClick={() => setTheme("light")}
+                                onClick={() => setTheme("dark")}
                                 className="swap-off h-8 w-8 fill-current"
                             />
                         )
