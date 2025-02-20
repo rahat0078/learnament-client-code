@@ -1,12 +1,18 @@
-import { FaArrowRightFromBracket } from "react-icons/fa6";
+import { FaArrowRightFromBracket, FaMoon } from "react-icons/fa6";
 import { IoMdMenu } from "react-icons/io";
 import { Link, NavLink } from "react-router-dom";
 import logo from '../assets/learnament-logo.png';
 import useAuth from "../hooks/useAuth";
+import { useContext } from "react";
+import ThemeContext from "../Provider/ThemeContext";
+import { LuSunMedium } from "react-icons/lu";
 
 const Navbar = () => {
 
-    const { user, logoutUser } = useAuth()
+    const { user, logoutUser } = useAuth();
+    const { theme, setTheme } = useContext(ThemeContext)
+
+    console.log(theme);
 
     const handleLogout = () => {
         logoutUser()
@@ -41,6 +47,26 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
+                <label className="swap swap-rotate mr-4">
+                    <input type="checkbox" />
+                    {/* sun icon */}
+                    {
+                        theme === "light" ? (
+                            <LuSunMedium
+                                onClick={() => setTheme("dark")}
+                                className="swap-on h-8 w-8 fill-current"
+                            />
+                        ) : (
+                            <FaMoon
+                                onClick={() => setTheme("light")}
+                                className="swap-off h-8 w-8 fill-current"
+                            />
+                        )
+                    }
+
+
+
+                </label>
                 {
                     user?.email ? <div className="dropdown dropdown-hover">
                         <div tabIndex={0} role="button">
