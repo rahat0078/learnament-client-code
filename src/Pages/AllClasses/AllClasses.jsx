@@ -4,28 +4,48 @@ import { useQuery } from '@tanstack/react-query';
 import useAxiosPublic from './../../hooks/useAxiosPublic';
 import { GiWideArrowDunk } from 'react-icons/gi';
 import { Link } from 'react-router-dom';
-import LoadingSpinner from './../../components/LoadingSpinner';
+import { FaSearch } from 'react-icons/fa';
+import { useState } from 'react';
 
 const AllClasses = () => {
 
     const axiosPublic = useAxiosPublic()
+    const [filter, setFilter] = useState('')
+    const [search, setSearch] = useState("")
+    console.log(filter);
 
-    const { data: classes = [],  isPending } = useQuery({
-        queryKey: ["/allClasses"],
+    const { data: classes = [],  } = useQuery({
+        queryKey: ["/allClasses", search], 
         queryFn: async () => {
-            const res = await axiosPublic.get("/allClasses")
-            return res.data
+            const res = await axiosPublic.get(`/allClasses?search=${search}`);
+            return res.data;
         }
-    })
+    });
 
-
-    if(isPending){
-        return <LoadingSpinner/>
-    }
     return (
         <div className='container mx-auto px-4'>
             <HelmetTitle title="All Classes"></HelmetTitle>
             <SectionHeading title="Explore Our All Verified Classes" description="Browse through a wide range of classes approved by our admin. Enroll in the ones that suit your learning needs and start your journey today!"></SectionHeading>
+            <div className='flex items-center gap-4 justify-end'>
+                <div className="relative w-full max-w-[220px]">
+                    <input
+                        onChange={e => setSearch(e.target.value)}
+                        type="text"
+                        placeholder="Search"
+                        className="input input-bordered w-full pr-[40px]"
+                    />
+                    <button className="absolute top-1/2 right-2 -translate-y-1/2 text-gray-500">
+                        <FaSearch />
+                    </button>
+                </div>
+
+                <select onChange={e => setFilter(e.target.value)} placeholder="Filter" className="select select-bordered w-full max-w-[220px]">
+                    <option>All</option>
+                    <option>easy</option>
+                    <option>medium</option>
+                    <option>hard</option>
+                </select>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pt-8 mb-16">
                 {classes.map((classItem) => (
                     <div key={classItem._id} className="card shadow-xl">
@@ -38,7 +58,7 @@ const AllClasses = () => {
                                 <span className="absolute top-0 left-0 w-full h-full bg-orange-500 rotate-45 rounded-lg z-10"></span>
                                 <span className="absolute w-full h-full text-center pt-2 text-white z-20 font-bold">
                                     {
-                                    classItem?.enrollmentCount ? classItem?.enrollmentCount : '0' 
+                                        classItem?.enrollmentCount ? classItem?.enrollmentCount : '0'
                                     } <br /> Enrollment
                                 </span>
                             </span>
