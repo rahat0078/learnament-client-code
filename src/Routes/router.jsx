@@ -21,11 +21,14 @@ import UpdateClass from "../DashboardPages/Teacher/UpdateClass";
 import MyClassDetailsTeacher from "../DashboardPages/Teacher/MyClassDetailsTeacher";
 import MyEnrollClassDetails from "../DashboardPages/User/MyEnrollClassDetails";
 import GiveFeedback from "../DashboardPages/User/GiveFeedback";
+import Error from './../Pages/Error/Error';
+
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <MainLayout />,
+        errorElement: <Error/>,
         children: [
             {
                 path: '/',
