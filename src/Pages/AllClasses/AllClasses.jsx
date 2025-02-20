@@ -5,22 +5,27 @@ import useAxiosPublic from './../../hooks/useAxiosPublic';
 import { GiWideArrowDunk } from 'react-icons/gi';
 import { Link } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const AllClasses = () => {
 
     const axiosPublic = useAxiosPublic()
     const [filter, setFilter] = useState('')
     const [search, setSearch] = useState("")
-    console.log(filter);
 
-    const { data: classes = [],  } = useQuery({
-        queryKey: ["/allClasses", search], 
+    const { data: classes = [], refetch } = useQuery({
+        queryKey: ["/allClasses", search],
         queryFn: async () => {
-            const res = await axiosPublic.get(`/allClasses?search=${search}`);
+            const res = await axiosPublic.get(`/allClasses?search=${search}&filter=${filter}`);
             return res.data;
         }
     });
+
+    useEffect(() => {
+        refetch();
+    }, [filter, refetch]);
+
+   
 
     return (
         <div className='container mx-auto px-4'>
@@ -39,11 +44,10 @@ const AllClasses = () => {
                     </button>
                 </div>
 
-                <select onChange={e => setFilter(e.target.value)} placeholder="Filter" className="select select-bordered w-full max-w-[220px]">
-                    <option>All</option>
-                    <option>easy</option>
-                    <option>medium</option>
-                    <option>hard</option>
+                <select onChange={e => {setFilter(e.target.value);}} placeholder="Filter" className="select select-bordered max-w-36">
+                    <option>Default</option>
+                    <option>Low to High</option>
+                    <option>High to Low</option>
                 </select>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pt-8 mb-16">

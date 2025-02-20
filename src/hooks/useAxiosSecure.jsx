@@ -6,7 +6,6 @@ const axiosSecure = axios.create({
     baseURL: 'https://learnament-server-side.vercel.app'
 })
 
-// https://learnament-server-side.vercel.app
 
 
 const useAxiosSecure = () => {

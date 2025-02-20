@@ -12,7 +12,6 @@ const Navbar = () => {
     const { user, logoutUser } = useAuth();
     const { theme, setTheme } = useContext(ThemeContext)
 
-    console.log(theme);
 
     const handleLogout = () => {
         logoutUser()
