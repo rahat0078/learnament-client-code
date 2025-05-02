@@ -19,7 +19,7 @@ const JoinAsTeacher = () => {
                 <p className="text-gray-600 mb-6">
                     Join our platform and empower learners worldwide. Create flexible schedules, connect with motivated students, and make a lasting impact from the comfort of your home.
                 </p>
-                <Link to="/TeachOnLearnament" className="btn md:text-lg text-white bg-[#05A698] hover:bg-[#058ea6]">
+                <Link to="/TeachOnLearnament" className="btn-primary">
                     Join as a Teacher
                 </Link>
             </div>

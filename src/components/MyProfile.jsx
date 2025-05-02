@@ -42,7 +42,7 @@ const MyProfile = () => {
                                 : "Student"}
                 </p>
 
-                <button onClick={logoutUser} className="btn md:text-lg text-white bg-[#05A698] hover:bg-[#058ea6]"><FaArrowRightFromBracket /> Logout</button>
+                <button onClick={logoutUser} className="btn-primary flex items-center gap-2"><FaArrowRightFromBracket /> Logout</button>
             </div>
 
         </>

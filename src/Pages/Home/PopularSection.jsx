@@ -87,7 +87,7 @@ const PopularSection = () => {
                                 </p>
                                 <div className="card-actions mt-4">
                                     <Link to={`/class/${classItem._id}`}
-                                        className="btn btn-sm text-white bg-[#05A698] hover:bg-[#058ea6] flex items-center gap-1"
+                                        className="btn-primary btn-sm flex items-center gap-1"
                                     >
                                         <GiWideArrowDunk />
                                         Enroll Now!

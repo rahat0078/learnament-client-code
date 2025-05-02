@@ -3,3 +3,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.btn-primary {
+    @apply rounded px-4 py-2 text-white bg-[#05A698] hover:bg-[#058ea6] transition duration-300 ease-in-out;
+  }

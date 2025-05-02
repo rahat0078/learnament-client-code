@@ -76,7 +76,7 @@ const ClassDetails = () => {
                     }
                     </p>
                     <div className="card-actions justify-end">
-                        <button onClick={() => handlePayment(classData)} className="btn md:text-lg text-white bg-[#05A698] hover:bg-[#058ea6]">Make Payment</button>
+                        <button onClick={() => handlePayment(classData)} className="btn-primary">Make Payment</button>
                     </div>
                 </div>
             </div>

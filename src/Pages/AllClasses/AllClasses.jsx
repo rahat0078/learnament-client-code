@@ -59,8 +59,8 @@ const AllClasses = () => {
                                 className="w-full h-48 object-cover"
                             />
                             <span className="absolute right-4 bottom-5 w-20 h-20">
-                                <span className="absolute top-0 left-0 w-full h-full bg-orange-500 rotate-45 rounded-lg z-10"></span>
-                                <span className="absolute w-full h-full text-center pt-2 text-white z-20 font-bold">
+                                <span className="absolute top-0 left-0 w-full h-full backdrop-blur-md rotate-45 rounded-lg z-10"></span>
+                                <span className="absolute w-full text-orange-600 h-full text-center pt-2 z-20 font-bold">
                                     {
                                         classItem?.enrollmentCount ? classItem?.enrollmentCount : '0'
                                     } <br /> Enrollment
@@ -81,7 +81,7 @@ const AllClasses = () => {
                             </p>
                             <div className="card-actions mt-4">
                                 <Link to={`/class/${classItem._id}`}
-                                    className="btn btn-sm text-white bg-[#05A698] hover:bg-[#058ea6] flex items-center gap-1"
+                                    className="btn-primary btn-sm flex items-center gap-1"
                                 >
                                     <GiWideArrowDunk />
                                     Enroll Now!

@@ -74,7 +74,7 @@ const Navbar = () => {
                             <li><a onClick={handleLogout} className="text-[#05A698]"><FaArrowRightFromBracket />
                                 Logout</a></li>
                         </ul>
-                    </div> : <Link to='/login' className="btn md:text-lg text-white bg-[#05A698] hover:bg-[#058ea6]">Login</Link>
+                    </div> : <Link to='/login' className="btn-primary">Login</Link>
                 }
 
 
