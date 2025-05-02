@@ -63,7 +63,7 @@ const Slider = () => {
                                     words={[item.title]}
                                     loop={Infinity}
                                     cursor
-                                    cursorStyle='_'
+                                    cursorStyle='_ '
                                     typeSpeed={50}
                                     deleteSpeed={50}
                                     delaySpeed={2500}

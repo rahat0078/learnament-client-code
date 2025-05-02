@@ -42,7 +42,7 @@ const PartnersSection = () => {
                 {partners.map((partner, index) => (
                     <div
                         key={index}
-                        className="p-4 rounded-lg shadow-md hover:shadow-xl transition duration-500 ease-in-out bg-base-100"
+                        className="p-4 rounded-lg shadow-md hover:scale-105 hover:bg-base-200 transition duration-500 ease-in-out"
                     >
                         <div className="flex flex-col md:flex-row gap-4 md:gap-4 items-center">
                             <img

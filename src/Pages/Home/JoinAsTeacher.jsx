@@ -15,8 +15,8 @@ const JoinAsTeacher = () => {
 
             
             <div className="w-full lg:w-1/2 text-center lg:text-left">
-                <h2 className="text-3xl font-bold text-gray-800 mb-4">Share Your Knowledge, Inspire the Future!</h2>
-                <p className="text-gray-600 mb-6">
+                <h2 className="text-3xl font-semibold mb-4">Share Your Knowledge, Inspire the Future!</h2>
+                <p className="text-gray-400 max-w-4xl mx-auto mb-6">
                     Join our platform and empower learners worldwide. Create flexible schedules, connect with motivated students, and make a lasting impact from the comfort of your home.
                 </p>
                 <Link to="/TeachOnLearnament" className="btn-primary">

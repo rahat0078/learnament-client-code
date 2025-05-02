@@ -44,7 +44,7 @@ const MyEnrollClass = () => {
                         <p className=""><strong>Instructor:</strong> {classItem.name}</p>
                         </div>
                         <div className="card-actions">
-                            <Link to={`/dashboard/myenroll-class/${classItem.classId}`} className="mt-4 btn md:text-lg text-white bg-[#05A698] hover:bg-[#058ea6]">
+                            <Link to={`/dashboard/myenroll-class/${classItem.classId}`} className="btn-primary flex items-center gap-1">
                                 Continue <FaArrowTrendUp />
 
                                 </Link>

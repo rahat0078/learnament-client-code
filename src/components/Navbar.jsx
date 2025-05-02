@@ -38,7 +38,7 @@ const Navbar = () => {
     return (
         <div className="navbar container mx-auto">
             <div className="navbar-start">
-                <Link to="/" className="flex items-center gap-2 border p-1 rounded"><img className="w-12 h-12 " src={logo} alt="" /> <span className="text-lg">LearnaMent</span> </Link>
+                <Link to="/" className="flex items-center gap-2"><img className="w-12 h-12 " src={logo} alt="" /> <span className="text-lg">LearnaMent</span> </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1 gap-4 md:text-lg">
