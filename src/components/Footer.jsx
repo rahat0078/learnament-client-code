@@ -47,7 +47,7 @@ const Footer = () => {
                                 type="text"
                                 placeholder="email/what's app"
                                 className="input input-bordered join-item" />
-                            <a onClick={handleSubscribe} className="btn  bg-[#078EA6] hover:bg-[#078EA6] text-white join-item">Subscribe</a>
+                            <a onClick={handleSubscribe} className="btn-primary join-item">Subscribe</a>
                         </div>
                     </fieldset>
                 </form>

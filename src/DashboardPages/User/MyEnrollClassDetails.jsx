@@ -45,7 +45,7 @@ const MyEnrollClassDetails = () => {
         <div className="px-4">
             <SectionHeading title="View All Assignments for This Course" description="Access all course assignments, including details, deadlines, and submission requirements, in one place."></SectionHeading>
             <div>
-                <Link to={`/dashboard/feedback/${id}`} className="btn md:text-lg text-white bg-[#05A698] hover:bg-[#058ea6]">Give Feedback</Link>
+                <Link to={`/dashboard/feedback/${id}`} className="btn-primary">Give Feedback</Link>
             </div>
             <h2 className="text-xl mt-4 font-semibold">
                 All assignments

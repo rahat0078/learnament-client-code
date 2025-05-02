@@ -8,6 +8,7 @@ import img1 from '../../assets/slider/001.jpg';
 import img2 from '../../assets/slider/002.jpg';
 import img3 from '../../assets/slider/003.jpg';
 import img4 from '../../assets/slider/004.webp';
+import { Typewriter } from 'react-simple-typewriter';
 
 
 const Slider = () => {
@@ -44,7 +45,7 @@ const Slider = () => {
                 spaceBetween={30}
                 centeredSlides={true}
                 autoplay={{
-                    delay: 2000,
+                    delay: 3500,
                     disableOnInteraction: false,
                 }}
                 pagination={{
@@ -57,8 +58,18 @@ const Slider = () => {
                     data.map((item, index) => <SwiperSlide key={index}>
                         <div className='flex justify-center items-center flex-col text-center px-4 bg-cover bg-no-repeat bg-center h-[75vh]'
                             style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url(${item.image})` }}>
-                            <h1 className='text-3xl md:text-4xl lg:text-6xl text-gray-100 font-bold'>{item.title}</h1>
-                            <p className='text-xl md:text-2xl text-gray-300 pt-6'>{item.description}</p>
+                            <h1 className='text-3xl md:text-4xl lg:text-6xl text-gray-100 font-bold'>
+                                <Typewriter
+                                    words={[item.title]}
+                                    loop={Infinity}
+                                    cursor
+                                    cursorStyle='_'
+                                    typeSpeed={50}
+                                    deleteSpeed={50}
+                                    delaySpeed={2500}
+                                />
+                            </h1>
+                            <p className='text-lg md:text-xxl text-gray-300 pt-6'>{item.description}</p>
                         </div>
                     </SwiperSlide>)
                 }
