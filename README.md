@@ -1,48 +1,94 @@
-## Learnament
+# 🎓 Learnament
 
-Learnament is a modern educational platform designed to revolutionize skill learning and class management. Built with the MERN stack, it provides seamless interaction between educational institutions, tutors, and students.
-
-#### 🌐 Live Website: [Learnament](https://learnament.web.app/)
-#### Backend code: https://github.com/rahat0078/learnament-server-code
+**Learnament** is a modern, responsive educational platform designed to revolutionize skill development and class management. It bridges the gap between students, teachers, and administrators through an intuitive interface, rich features, and seamless backend connectivity. Whether you're a student looking to grow, a teacher seeking to share knowledge, or an admin managing the system — Learnament simplifies the journey.
 
 ---
 
-### 🚀 Features
+## 🌐 Live Website
 
-1. **Responsive Design**: Fully optimized for mobile, tablet, and desktop.
-2. **Dynamic Homepage**: Includes carousel banners, partner highlights, feedback carousel, and class statistics.
-3. **Classes Management**: Displays approved classes with details like title, price, and total enrollments.
-4. **Interactive Dashboards**:
-   - **Student Dashboard**: View enrolled classes, assignments, and submit evaluations.
-   - **Teacher Dashboard**: Add, manage, and track class progress and assignments.
-   - **Admin Dashboard**: Manage users, teacher requests, and classes.
-5. **Teaching Application**: Allows users to apply for a teaching role with status tracking.
-6. **Authentication**: Email/password and Google sign-in with JWT implementation.
-7. **CRUD Operations**: All CRUD operations are integrated with sweet alerts.
-8. **Secure Configurations**: Firebase config and MongoDB credentials are secured via environment variables.
-9. **Tanstack Query**: Implemented for efficient data fetching.
-10. **Search**: Enhanced user experience with search functionality.
+🔗 [Visit Learnament](https://learnament.web.app/)  
+🔧 [Backend Code (GitHub)](https://github.com/rahat0078/learnament-server-code)
 
 ---
 
-### 📋 Admin Credentials
+## ✨ Features
 
-- **Username**: `john@doe.com`
+- 🔥 **Dynamic Homepage**
+  - Hero slider, partner highlights, feedback carousel, and stats
+- 📚 **Classes Section**
+  - Shows all approved classes with name, instructor, price, and enrollment count
+- 🧑‍🎓 **Student Dashboard**
+  - View enrolled classes, submit assignments, evaluate instructors
+- 👨‍🏫 **Teacher Dashboard**
+  - Add/manage classes, track class progress, view assignments
+- 🛡️ **Admin Dashboard**
+  - Manage users, approve/reject teacher requests, control classes
+- ✍️ **Teaching Application**
+  - Users can apply to become instructors with live status tracking
+- 🔐 **Authentication System**
+  - Email/password login and Google sign-in
+  - JWT integration to secure protected routes and ensure safe communication between frontend and backend
+- 🔁 **Full CRUD Functionality**
+  - Manage classes, users, and content with SweetAlert feedback
+- 🌈 **Dark Mode Support**
+  - Toggle between light and dark themes for better accessibility
+- 🔍 **Search Functionality**
+  - Easily find classes or content with search bar
+- ⚡ **Optimized for Speed**
+  - Efficient data fetching using **Tanstack Query**
+- 🧪 **Form Handling**
+  - Clean and validated forms using React Hook Form
+- 🛡️ **Secure Environment**
+  - Firebase and MongoDB credentials stored via `.env` variables
+
+---
+
+## 🛠️ Tech Stack
+
+### 🔷 Frontend
+- React.js
+- Tailwind CSS
+- Daisy UI
+- SwiperJS
+- React Hook Form
+- React Router
+- Tanstack Query
+
+### 🔶 Backend
+- Node.js
+- Express.js
+- MongoDB for databse
+- JWT implementation for route protection and role-based access
+
+
+
+### 🔐 Authentication
+- Firebase Authentication for Email/Password and Google sign-in
+- JWT (JSON Web Token) used for securing routes and maintaining user sessions
+
+
+
+### 🚀 Deployment
+- **Frontend**: Firebase Hosting
+- **Backend**: Vercel
+
+---
+
+## 🔐 Admin Credentials
+
+> You can use the following credentials to access the admin panel for testing purposes:
+
+- **Email**: `john@doe.com`  
 - **Password**: `1234jJ`
 
 ---
 
-### 🛠️ Technologies Used
+## ⚙️ Setup & Installation
 
-- **Frontend**: React, Tailwind CSS, Daisy UI, SwiperJs
-- **Backend**: Node.js, Express.js, MongoDB
-- **Authentication**: Firebase, JWT
-- **State Management**: Tanstack Query
-- **Forms**: React Hook Form
+1. **Clone the Repository**
 
----
-
-### 🧾 Deployment
-
-- **Frontend**: Firebase Hosting
-- **Backend**: Vercel
+   ```bash
+   git clone https://github.com/rahat0078/learnament-client-code.git
+   cd learnament-client-code
+   npm install
+   npm run dev
