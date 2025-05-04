@@ -5,6 +5,7 @@ import { TiPlus } from "react-icons/ti";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import useTeacher from "../../hooks/useTeacher";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 const MyClassDetailsTeacher = () => {
     const { id } = useParams()
@@ -12,7 +13,7 @@ const MyClassDetailsTeacher = () => {
     const { isTeacher } = useTeacher()
     const { register, formState: { errors }, reset, handleSubmit } = useForm();
 
-    const { data: classDetails, refetch: refetchClassDetails } = useQuery({
+    const { data: classDetails, refetch: refetchClassDetails, isPending } = useQuery({
         queryKey: [`/class/${id}`, id],
         queryFn: async () => {
             const res = await axiosSecure.get(`/class/${id}`)
@@ -50,6 +51,9 @@ const MyClassDetailsTeacher = () => {
             })
     }
 
+    if(isPending) {
+        return <LoadingSpinner/>
+    }
 
     return (
         <div>

@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 
 
@@ -13,7 +14,7 @@ const MyClass = () => {
     const axiosSecure = useAxiosSecure()
     const { user } = useAuth()
 
-    const { data: classes = [], refetch } = useQuery({
+    const { data: classes = [], refetch, isPending } = useQuery({
         queryKey: [`/classes/teacher/user.email`, user?.email],
         queryFn: async () => {
             const res = await axiosSecure.get(`/classes/teacher/${user?.email}`)
@@ -27,7 +28,7 @@ const MyClass = () => {
             text: "You won't be able to revert this!",
             icon: "warning",
             showCancelButton: true,
-            confirmButtonColor: "#3085d6",
+            confirmButtonColor: "#05A698",
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
@@ -48,6 +49,9 @@ const MyClass = () => {
         });
     };
 
+    if(isPending){
+        return <LoadingSpinner/>
+    }
 
     return (
         <div className="px-6 my-16">
@@ -87,13 +91,13 @@ const MyClass = () => {
                                 <div className="flex gap-4 items-center">
                                     <Link
                                         to={`/dashboard/classUp/${classItem._id}`}
-                                        className="btn btn-sm btn-primary"
+                                        className="btn-sm btn-primary"
                                         disabled={classItem.status === "rejected"}
                                     >
                                         <FaEdit />
                                     </Link>
                                     <button
-                                        className="btn btn-sm btn-error "
+                                        className="btn btn-sm btn-error rounded text-white"
                                         onClick={() => handleDelete(classItem)}
                                     >
                                         <FaTrashAlt />
@@ -101,7 +105,7 @@ const MyClass = () => {
                                 </div>
                                 <Link
                                     to={`/dashboard/my-class/${classItem._id}`}
-                                    className="btn btn-sm text-white bg-[#05A698] hover:bg-[#058ea6] flex items-center gap-1"
+                                    className="btn-primary btn-sm  flex items-center gap-1"
                                     disabled={classItem.status !== "approved"}
                                 >
                                     <FaEye /> See Details

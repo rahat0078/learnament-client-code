@@ -1,8 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import LoadingSpinner from './../../components/LoadingSpinner';
+import loadingGif from '../../assets/loading.gif';
+
 
 
 const TeacherRequest = () => {
@@ -10,13 +13,21 @@ const TeacherRequest = () => {
     const [search, setSearch] = useState("");
     const axiosSecure = useAxiosSecure()
 
-    const { data: teacherRequests = [], refetch } = useQuery({
-        queryKey: ['teachersRequests', { search }],
+    const { data: teacherRequests = [], refetch, isPending, isFetching } = useQuery({
+        queryKey: ['teachersRequests',],
+        enabled: false,
         queryFn: async () => {
             const res = await axiosSecure.get(`/teachersRequests?search=${search}`)
             return res.data
         }
     })
+    useEffect(() => {
+        const delay = setTimeout(() => {
+            refetch();
+        }, 70);
+
+        return () => clearTimeout(delay);
+    }, [refetch, search]);
 
 
     const handleApprove = (user) => {
@@ -35,6 +46,8 @@ const TeacherRequest = () => {
     }
 
 
+
+
     const handleReject = (user) => {
         axiosSecure.patch(`/teacher/reject/${user._id}`)
             .then(res => {
@@ -48,6 +61,9 @@ const TeacherRequest = () => {
 
 
 
+    if (isPending) {
+        return <LoadingSpinner />
+    }
 
     return (
         <div className="overflow-x-auto p-4 lg:p-6 bg-base-200 rounded-xl shadow-md">
@@ -55,7 +71,12 @@ const TeacherRequest = () => {
             <div className="flex flex-col sm:flex-row gap-2 items-center justify-between mb-6 px-2">
                 <h2 className="pl-4 font-semibold text-lg md:text-xl">Manage Teacher Requests</h2>
                 <label className="input input-bordered flex items-center gap-2 max-w-xs">
-                    <input onChange={e => setSearch(e.target.value)} type="text" className="grow" placeholder="Search by Name" />
+                    <input
+                        onChange={e => {
+                            setSearch(e.target.value);
+                            refetch();
+                        }}
+                        type="text" className="grow" placeholder="Search by Name" />
                     <FaSearch className="opacity-50" />
                 </label>
             </div>
@@ -72,51 +93,63 @@ const TeacherRequest = () => {
                         <th className="text-center">Actions</th>
                     </tr>
                 </thead>
-                <tbody>
-                    {
-                        teacherRequests.length > 0 ?
-                            teacherRequests.map((request, index) => (
-                                <tr key={request._id}>
-                                    <th className="text-center">{index + 1}</th>
-                                    <td>{request.name}</td>
-                                    <td>
-                                        <img
-                                            src={request.photo}
-                                            alt={request.name}
-                                            className="w-12 h-12 rounded-full"
-                                        />
-                                    </td>
-                                    <td>{request.experience}</td>
-                                    <td>{request.title}</td>
-                                    <td>{request.category}</td>
-                                    <td>
-                                        <span
-                                            className={`badge ${request.status === "pending"
-                                                ? "badge-warning"
-                                                : request.status === "approved"
-                                                    ? "badge-success"
-                                                    : "badge-error"
-                                                }`}
-                                        >
-                                            {request.status}
-                                        </span>
-                                    </td>
-                                    <td className="text-center flex gap-2 flex-wrap">
-                                        <button onClick={() => handleApprove(request)} className="btn btn-success btn-sm" disabled={request.status !== "pending"}>
-                                            Approve </button>
-                                        <button onClick={() => handleReject(request)} className="btn btn-error btn-sm" disabled={request.status !== "pending"}>
-                                            Reject</button>
-                                    </td>
-                                </tr>
-                            ))
-                            : <tr className="text-center text-xl font-bold pl-6">
-                                <td> No Requests</td>
-                            </tr>
+                {
+                    isFetching ? <tbody>
+                        <tr>
+                            <td colSpan="8" className="text-center py-8">
+                                <div className='flex justify-center'>
+                                    <img className='w-64' src={loadingGif} alt="Loading..." />
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                        :
+                        <tbody>
+                            {
+                                teacherRequests.length > 0 ?
+                                    teacherRequests.map((request, index) => (
+                                        <tr key={request._id}>
+                                            <th className="text-center">{index + 1}</th>
+                                            <td>{request.name}</td>
+                                            <td>
+                                                <img
+                                                    src={request.photo}
+                                                    alt={request.name}
+                                                    className="w-12 h-12 rounded-full"
+                                                />
+                                            </td>
+                                            <td>{request.experience}</td>
+                                            <td>{request.title}</td>
+                                            <td>{request.category}</td>
+                                            <td>
+                                                <span
+                                                    className={`badge ${request.status === "pending"
+                                                        ? "badge-warning"
+                                                        : request.status === "approved"
+                                                            ? "badge-success"
+                                                            : "badge-error"
+                                                        }`}
+                                                >
+                                                    {request.status}
+                                                </span>
+                                            </td>
+                                            <td className="text-center flex gap-2 flex-wrap">
+                                                <button onClick={() => handleApprove(request)} className="btn btn-success btn-sm" disabled={request.status !== "pending"}>
+                                                    Approve </button>
+                                                <button onClick={() => handleReject(request)} className="btn btn-error btn-sm" disabled={request.status !== "pending"}>
+                                                    Reject</button>
+                                            </td>
+                                        </tr>
+                                    ))
+                                    : <tr className="text-center text-xl font-bold pl-6">
+                                        <td> No Requests</td>
+                                    </tr>
 
-                    }
+                            }
 
-                </tbody>
+                        </tbody>}
             </table>
+
         </div>
     );
 };

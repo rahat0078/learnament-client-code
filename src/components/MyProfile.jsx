@@ -2,13 +2,14 @@ import { FaArrowRightFromBracket } from "react-icons/fa6";
 import useAuth from "../hooks/useAuth";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import LoadingSpinner from "./LoadingSpinner";
 
 const MyProfile = () => {
 
     const { user, logoutUser } = useAuth()
     const axiosSecure = useAxiosSecure()
 
-    const { data: userData } = useQuery({
+    const { data: userData, isPending } = useQuery({
         queryKey: ['/user', user?.email,],
         queryFn: async () => {
             const res = await axiosSecure.get(`/user/${user?.email}`)
@@ -19,6 +20,9 @@ const MyProfile = () => {
 
 
 
+    if(isPending){
+        return <LoadingSpinner/>
+    }
 
 
     return (

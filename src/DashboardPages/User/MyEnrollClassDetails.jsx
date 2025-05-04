@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 const MyEnrollClassDetails = () => {
     const { id } = useParams()
@@ -11,7 +12,7 @@ const MyEnrollClassDetails = () => {
     const { register, formState: { errors }, reset, handleSubmit } = useForm();
 
 
-    const { data: assignments } = useQuery({
+    const { data: assignments, isPending } = useQuery({
         queryKey: [`/assignments/${id}`, id],
         queryFn: async () => {
             const res = await axiosSecure.get(`/assignments/${id}`)
@@ -40,6 +41,9 @@ const MyEnrollClassDetails = () => {
 
     }
 
+    if(isPending) {
+        return <LoadingSpinner/>
+    }
 
     return (
         <div className="px-4">

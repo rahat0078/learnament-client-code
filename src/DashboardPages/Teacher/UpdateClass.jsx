@@ -124,7 +124,7 @@ const UpdateClass = () => {
 
                     </div>
                     <div className="form-control mt-6">
-                        <input type="submit" value={"Update Class"} className="btn md:text-lg text-white bg-[#05A698] hover:bg-[#058ea6]" />
+                        <input type="submit" value={"Update Class"} className="btn-primary" />
                     </div>
                 </form>
             </div>
