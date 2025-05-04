@@ -74,11 +74,11 @@ const TeachOnLM = () => {
     }
 
     return (
-        <div className="container mx-auto min-h-screen pt-12 px-4">
+        <div className="container mx-auto min-h-[55vh] section section-bottom px-4">
             <HelmetTitle title={"Teach On"}></HelmetTitle>
             <SectionHeading title="Teach On Learnament" description="Share your expertise and inspire learners worldwide."></SectionHeading>
 
-            <div className="flex justify-center flex-col items-center py-12">
+            <div className="flex justify-center flex-col items-center">
 
                 {/* status pending  */}
 

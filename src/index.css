@@ -10,3 +10,7 @@
 .section {
   @apply mt-8 md:mt-10 lg:mt-12 xl:mt-14
 }
+.section-bottom {
+  @apply mb-8 md:mb-10 lg:mb-12 xl:mb-14
+}
+

@@ -28,7 +28,7 @@ const AllClasses = () => {
    
 
     return (
-        <div className='container mx-auto px-4'>
+        <div className='container mx-auto px-2 md:px-0 section'>
             <HelmetTitle title="All Classes"></HelmetTitle>
             <SectionHeading title="Explore Our All Verified Classes" description="Browse through a wide range of classes approved by our admin. Enroll in the ones that suit your learning needs and start your journey today!"></SectionHeading>
             <div className='flex items-center gap-4 justify-end'>
@@ -50,7 +50,7 @@ const AllClasses = () => {
                     <option>High to Low</option>
                 </select>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pt-8 mb-16">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pt-4 md:pt-8 section-bottom">
                 {classes.map((classItem) => (
                     <div key={classItem._id} className="card shadow-xl">
                         <figure className='relative'>
@@ -68,7 +68,7 @@ const AllClasses = () => {
                             </span>
                         </figure>
 
-                        <div className="card-body">
+                        <div className="card-body gap-1 pt-5 pl-4">
                             <h2 className="card-title text-lg font-bold">{classItem.title}</h2>
                             <p className="text-gray-500">
                                 <strong>Teacher:</strong> {classItem.name}
@@ -79,7 +79,7 @@ const AllClasses = () => {
                             <p className="text-gray-500">
                                 <strong>Description:</strong> {classItem.description.slice(0, 70)} ......
                             </p>
-                            <div className="card-actions mt-4">
+                            <div className="card-actions mt-2">
                                 <Link to={`/class/${classItem._id}`}
                                     className="btn-primary btn-sm flex items-center gap-1"
                                 >

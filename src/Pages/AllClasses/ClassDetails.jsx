@@ -57,7 +57,7 @@ const ClassDetails = () => {
 
 
     return (
-        <div className="container mx-auto my-16 lg:my-24 px-4">
+        <div className="container mx-auto section section-bottom flex justify-center items-center px-2 lg:px-0 min-h-[52vh]">
             <div className="card lg:card-side shadow-xl max-w-5xl w-full mx-auto">
                 <figure>
                     <img
