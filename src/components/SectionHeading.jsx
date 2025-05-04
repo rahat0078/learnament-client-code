@@ -2,8 +2,8 @@
 
 const SectionHeading = ({ title, description }) => {
     return (
-        <div className="text-center my-6">
-            <h2 className="text-3xl font-semibold mb-4">{title}</h2>
+        <div className="text-center mb-4">
+            <h2 className="text-3xl font-semibold mb-2">{title}</h2>
             {
                 description && <p className="text-gray-400 max-w-4xl mx-auto">{description}</p>
             }

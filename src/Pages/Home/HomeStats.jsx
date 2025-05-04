@@ -31,9 +31,9 @@ const HomeStats = () => {
 
 
     return (
-        <section className="py-16 container mx-auto">
-            <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 px-6">
-                <div className="flex flex-col space-y-6">
+        <section className="py-8 md:py-10 lg:py-12 xl:py-14 container mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8 px-4">
+                <div className="flex flex-col lg:space-y-6 md:space-y-4 space-y-2">
                     <div className="bg-base-100 p-6 rounded-lg shadow-xl flex items-center justify-between">
                         <div>
                             <h3 className="text-xl font-semibold ">Total Users</h3>

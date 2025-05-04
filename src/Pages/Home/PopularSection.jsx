@@ -26,7 +26,7 @@ const PopularSection = () => {
 
 
     return (
-        <div>
+        <div className="section">
             <SectionHeading title="Most Popular Courses" description="Explore our most in-demand classes, handpicked based on the highest enrollment. Join thousands of learners in mastering new skills and advancing your knowledge today!"></SectionHeading>
 
             <Swiper
@@ -58,14 +58,14 @@ const PopularSection = () => {
             >
                 {
                     classes.map(classItem => <SwiperSlide key={classItem._id}>
-                        <div key={classItem._id} className="card shadow-xl my-10">
+                        <div key={classItem._id} className="card shadow-xl">
                             <figure className='relative'>
                                 <img
                                     src={classItem.image}
                                     className="w-full h-48 object-cover"
                                 />
                                 <span className="absolute right-4 bottom-5 w-20 h-20">
-                                    <span className="absolute top-0 left-0 w-full h-full bg-orange-500 rotate-45 rounded-lg z-10"></span>
+                                    <span className="absolute top-0 left-0 w-full h-full backdrop-blur-md rotate-45 rounded-lg z-10"></span>
                                     <span className="absolute w-full h-full text-center pt-2 text-white z-20 font-bold">
                                         {
                                             classItem?.enrollmentCount ? classItem?.enrollmentCount : '0'

@@ -16,19 +16,19 @@ const Home = () => {
                 <header>
                     <Slider />
                 </header>
-                <main className="container mx-auto bg-base-100 px-4">
+                <main className="container mx-auto px-2 md:px-0">
                     <PartnersSection />
                     <PopularSection />
                     <Feedback />
                 </main>
-                <section className="bg-base-200">
+                <section className="bg-base-200 section">
                     <HomeStats />
                 </section>
                 <JoinAsTeacher />
-                <section className="bg-base-200 px-4">
-                    <Faq/>
+                <section className="bg-base-200 px-2 md:px-0 section">
+                    <Faq />
                 </section>
-                <NextLevel/>
+                <NextLevel />
             </div>
         </>
     );

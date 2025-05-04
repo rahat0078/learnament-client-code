@@ -56,7 +56,7 @@ const Slider = () => {
             >
                 {
                     data.map((item, index) => <SwiperSlide key={index}>
-                        <div className='flex justify-center items-center flex-col text-center px-4 bg-cover bg-no-repeat bg-center h-[75vh]'
+                        <div className='flex justify-center items-center flex-col text-center px-4 bg-cover bg-no-repeat bg-center h-[60vh]'
                             style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url(${item.image})` }}>
                             <h1 className='text-3xl md:text-4xl lg:text-6xl text-gray-100 font-bold'>
                                 <Typewriter

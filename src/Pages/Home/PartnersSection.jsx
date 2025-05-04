@@ -36,9 +36,9 @@ const partners = [
 
 const PartnersSection = () => {
     return (
-        <div className="py-16">
+        <section className="section">
             <SectionHeading title="Our Partners" description="Collaboration that drives innovation in education."></SectionHeading>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 pt-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
                 {partners.map((partner, index) => (
                     <div
                         key={index}
@@ -56,7 +56,7 @@ const PartnersSection = () => {
                     </div>
                 ))}
             </div>
-        </div>
+        </section>
     );
 };
 

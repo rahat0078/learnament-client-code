@@ -52,7 +52,7 @@ const Faq = () => {
 
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center container mx-auto gap-10 py-12 md:py-16 lg:py-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center container mx-auto gap-4 lg:gap-10 py-8 md:py-10 lg:py-12 xl:py-14">
             <div className='lg:col-span-2'>
                 <Accordion allowZeroExpanded={true}>
                     {

@@ -36,13 +36,13 @@ const Feedback = () => {
     
 
     return (
-        <div className="py-16 flex flex-col justify-center items-center">
+        <section className="section flex flex-col justify-center items-center">
             <SectionHeading title="Feedback" description=""></SectionHeading>
             {/* rating data */}
             {/* quote  */}
-            <FaQuoteLeft className="text-6xl mb-10" />
+            <FaQuoteLeft className="text-6xl mb-5" />
 
-            <div className="container mx-auto">
+            <div className="w-full max-w-6xl mx-auto">
                 <Swiper
                     spaceBetween={30}
                     centeredSlides={true}
@@ -79,7 +79,7 @@ const Feedback = () => {
                     }
                 </Swiper>
             </div>
-        </div>
+        </section>
     );
 };
 

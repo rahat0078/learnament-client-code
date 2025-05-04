@@ -4,7 +4,7 @@ import teacherImg from '../../assets/join-teacher.avif';
 
 const JoinAsTeacher = () => {
     return (
-        <div className="flex flex-col lg:flex-row items-center py-16 gap-8 container mx-auto">
+        <div className="flex flex-col lg:flex-row items-center section lg:gap-8 gap-4 container mx-auto">
             <div className="w-full lg:w-1/2">
                 <img
                     src={teacherImg}
